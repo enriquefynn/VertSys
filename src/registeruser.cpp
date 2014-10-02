@@ -18,7 +18,6 @@ RegisterUser::~RegisterUser()
 void RegisterUser::on_buttonBox_accepted()
 {
     MainWindow conn;
-    conn.connOpen();
 
     QString name, phone, address;
     name = ui->lineEdit_name->text();
@@ -30,5 +29,4 @@ void RegisterUser::on_buttonBox_accepted()
     if(query.exec()){
         QMessageBox::critical(this,tr("Save"),tr("Saved"));
     }
-    conn.connClose();
 }

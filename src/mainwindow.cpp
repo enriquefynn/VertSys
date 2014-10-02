@@ -8,8 +8,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    connOpen();
-
     model = new QSqlTableModel(this);
     model->setTable("contacts");
     model->select();
@@ -21,11 +19,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    connClose();
     delete ui;
 }
 
-void MainWindow::on_pushButton_newRegister_clicked()
+void MainWindow::on_actionNew_Climber_triggered()
 {
     ru = new RegisterUser(this);
     ru->show();

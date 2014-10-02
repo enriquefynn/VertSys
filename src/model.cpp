@@ -5,12 +5,12 @@ MyModel::MyModel(QObject *parent) :
 {
 }
 
-int MyModel::rowCount(const QModelIndex & /*parent*/) const
+int MyModel::rowCount(const QModelIndex &) const
  {
     return 2;
  }
 
- int MyModel::columnCount(const QModelIndex & /*parent*/) const
+ int MyModel::columnCount(const QModelIndex &) const
  {
      return 3;
  }

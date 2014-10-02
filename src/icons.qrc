@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/general">
+        <file>icons/Search-icon.png</file>
+        <file>icons/New-climber.png</file>
+    </qresource>
+</RCC>

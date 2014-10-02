@@ -14,10 +14,17 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    registeruser.cpp
+    registeruser.cpp \
+    dbmanager.cpp \
+    model.cpp
 
 HEADERS  += mainwindow.h \
-    registeruser.h
+    registeruser.h \
+    dbmanager.h \
+    model.h
 
 FORMS    += mainwindow.ui \
     registeruser.ui
+
+RESOURCES += \
+    icons.qrc

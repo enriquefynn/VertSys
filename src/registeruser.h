@@ -1,5 +1,4 @@
-#ifndef REGISTERUSER_H
-#define REGISTERUSER_H
+#pragma once
 
 #include <QDialog>
 
@@ -21,5 +20,3 @@ private slots:
 private:
     Ui::RegisterUser *ui;
 };
-
-#endif // REGISTERUSER_H
