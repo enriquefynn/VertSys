@@ -101,6 +101,7 @@
   <tabstop>lineEdit_Addr</tabstop>
   <tabstop>lineEdit_Phone</tabstop>
   <tabstop>lineEdit_Email</tabstop>
+  <tabstop>dateEdit</tabstop>
   <tabstop>buttonBox</tabstop>
  </tabstops>
  <resources/>

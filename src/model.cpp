@@ -6,22 +6,22 @@ MyModel::MyModel(QObject *parent) :
 }
 
 int MyModel::rowCount(const QModelIndex &) const
- {
-    return 2;
- }
+{
+return 2;
+}
 
- int MyModel::columnCount(const QModelIndex &) const
- {
-     return 3;
- }
+int MyModel::columnCount(const QModelIndex &) const
+{
+    return 3;
+}
 
- QVariant MyModel::data(const QModelIndex &index, int role) const
+QVariant MyModel::data(const QModelIndex &index, int role) const
+{
+ if (role == Qt::DisplayRole)
  {
-     if (role == Qt::DisplayRole)
-     {
-        return QString("Row%1, Column%2")
-                    .arg(index.row() + 1)
-                    .arg(index.column() +1);
-     }
-     return QVariant();
+    return QString("Row%1, Column%2")
+                .arg(index.row() + 1)
+                .arg(index.column() +1);
  }
+ return QVariant();
+}

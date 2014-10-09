@@ -8,13 +8,26 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    model = new QSqlTableModel(this);
+    model = new QSqlTableModel(this, QSqlDatabase::database());
     model->setTable("contacts");
     model->select();
 
-    qDebug() << model->lastError().text();
+    tableView = ui->tableView_listUsers;
 
-    ui->tableView_listUsers->setModel(model);
+    proxyModel = new QSortFilterProxyModel(this);
+    proxyModel->setDynamicSortFilter(true);
+    proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+    proxyModel->setSourceModel(model);
+    proxyModel->setFilterKeyColumn(0);
+
+    tableView->setModel(proxyModel);
+
+    tableView->sortByColumn(4, Qt::DescendingOrder);
+    //Status
+    tableView->hideColumn(5);
+    //Address
+    tableView->hideColumn(2);
+    qDebug() << model->lastError().text();
 }
 
 MainWindow::~MainWindow()
@@ -26,4 +39,9 @@ void MainWindow::on_actionNew_Climber_triggered()
 {
     ru = new RegisterUser(this);
     ru->show();
+}
+
+void MainWindow::on_lineEdit_search_textChanged(const QString &str)
+{
+    proxyModel->setFilterRegExp(str);
 }
