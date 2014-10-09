@@ -20,9 +20,9 @@ void RegisterUser::on_buttonBox_accepted()
     MainWindow conn;
 
     QString name, phone, address;
-    name = ui->lineEdit_name->text();
-    phone = ui->lineEdit_phone->text();
-    address = ui->lineEdit_address->text();
+    name = ui->lineEdit_Name->text();
+    phone = ui->lineEdit_Phone->text();
+    address = ui->lineEdit_Addr->text();
 
     QSqlQuery query;
     query.prepare("insert into contacts (name, phone, address) values ('"+name+"','"+phone+"','"+address+"')");

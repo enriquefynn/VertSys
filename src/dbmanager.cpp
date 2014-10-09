@@ -4,7 +4,6 @@ bool DBManager::openDB()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
     QFileInfo fileInfo("vertsys.db");
-    qDebug() << "Existe: " << fileInfo.absoluteFilePath() << endl;
     db.setDatabaseName(fileInfo.absoluteFilePath());
     if (!fileInfo.exists())
     {
