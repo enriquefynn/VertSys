@@ -9,6 +9,7 @@ MyModel::MyModel(QObject *parent) :
 
 void MyModel::update()
 {
+    qDebug() << "Updating..." << endl;
     emit this->layoutChanged();
 }
 
@@ -21,7 +22,6 @@ QVariant MyModel::data(const QModelIndex &index, int role) const
         {
             case Qt::BackgroundRole:
                 QDate today = QDate::currentDate();
-                qDebug() << "Data: " << QDate::fromString(value.toString(), "yyyy-MM-dd") << endl;
                 if (today >= QDate::fromString(value.toString(), "yyyy-MM-dd"))
                 {
                     QBrush redBackground(Qt::red);

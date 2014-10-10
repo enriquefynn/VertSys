@@ -21,7 +21,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    inline QSqlTableModel* getModel(){return model;}
+    inline MyModel* getModel(){return model;}
 
 private slots:
     void on_actionNew_Climber_triggered();
