@@ -20,6 +20,9 @@ QVariant MyModel::data(const QModelIndex &index, int role) const
         QVariant value = QSqlQueryModel::data(index, Qt::DisplayRole);
         switch(role)
         {
+            case Qt::DisplayRole:
+                return QDate::fromString(value.toString(), "yyyy-MM-dd").toString("dd/MM/yyyy");
+                break;
             case Qt::BackgroundRole:
                 QDate today = QDate::currentDate();
                 if (today >= QDate::fromString(value.toString(), "yyyy-MM-dd"))

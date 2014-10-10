@@ -24,8 +24,10 @@ MainWindow::MainWindow(QWidget *parent) :
     tableView->setModel(proxyModel);
     tableView->setSortingEnabled(true);
     tableView->sortByColumn(4, Qt::AscendingOrder);
-    //Status
+    //Date_Start
     tableView->hideColumn(5);
+    //Status
+    tableView->hideColumn(6);
     //Address
     tableView->hideColumn(2);
     tableView->verticalHeader()->setVisible(false);
