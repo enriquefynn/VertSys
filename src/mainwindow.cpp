@@ -7,12 +7,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
     model = new MyModel(this);
     model->setTable("climber");
     model->select();
     model->setEditStrategy(QSqlTableModel::OnFieldChange);
-    tableView = ui->tableView_listUsers;
 
     proxyModel = new QSortFilterProxyModel(this);
     proxyModel->setDynamicSortFilter(true);
@@ -20,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     proxyModel->setSourceModel(model);
     proxyModel->setFilterKeyColumn(0);
 
+    tableView = ui->tableView_listUsers;
 
     tableView->setModel(proxyModel);
     tableView->setSortingEnabled(true);
@@ -31,6 +30,8 @@ MainWindow::MainWindow(QWidget *parent) :
     //Address
     tableView->hideColumn(2);
     tableView->verticalHeader()->setVisible(false);
+    tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+
     qDebug() << model->lastError().text();
 }
 

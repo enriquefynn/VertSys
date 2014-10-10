@@ -22,7 +22,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     inline MyModel* getModel(){return model;}
-
+    inline QSortFilterProxyModel* getProxyModel(){return proxyModel;}
 private slots:
     void on_actionNew_Climber_triggered();
     void on_lineEdit_search_textChanged(const QString &arg1);
