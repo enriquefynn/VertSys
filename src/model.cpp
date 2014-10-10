@@ -1,27 +1,34 @@
+#include <QBrush>
+#include <QtDebug>
 #include "model.h"
 
 MyModel::MyModel(QObject *parent) :
-    QAbstractTableModel(parent)
+    QSqlTableModel(parent)
 {
 }
 
-int MyModel::rowCount(const QModelIndex &) const
+void MyModel::update()
 {
-return 2;
-}
-
-int MyModel::columnCount(const QModelIndex &) const
-{
-    return 3;
+    emit this->layoutChanged();
 }
 
 QVariant MyModel::data(const QModelIndex &index, int role) const
 {
- if (role == Qt::DisplayRole)
- {
-    return QString("Row%1, Column%2")
-                .arg(index.row() + 1)
-                .arg(index.column() +1);
- }
- return QVariant();
+    if (index.column() == 4)
+    {
+        QVariant value = QSqlQueryModel::data(index, Qt::DisplayRole);
+        switch(role)
+        {
+            case Qt::BackgroundRole:
+                QDate today = QDate::currentDate();
+                qDebug() << "Data: " << QDate::fromString(value.toString(), "yyyy-MM-dd") << endl;
+                if (today >= QDate::fromString(value.toString(), "yyyy-MM-dd"))
+                {
+                    QBrush redBackground(Qt::red);
+                    return redBackground;
+                }
+                break;
+        }
+    }
+    return QSqlTableModel::data(index,role);
 }

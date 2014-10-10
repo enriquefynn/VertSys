@@ -8,6 +8,7 @@
 #include <QSortFilterProxyModel>
 
 #include "registeruser.h"
+#include "model.h"
 
 namespace Ui {
 class MainWindow;
@@ -20,7 +21,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void updateLayout();
+    inline QSqlTableModel* getModel(){return model;}
 
 private slots:
     void on_actionNew_Climber_triggered();
@@ -29,7 +30,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     RegisterUser *ru;
-    QSqlTableModel *model;
+    MyModel *model;
     QTableView *tableView;
     QSortFilterProxyModel *proxyModel;
 };

@@ -8,10 +8,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    model = new QSqlTableModel(this, QSqlDatabase::database());
-    model->setTable("contacts");
+    model = new MyModel(this);
+    model->setTable("climber");
     model->select();
-
+    model->setEditStrategy(QSqlTableModel::OnFieldChange);
     tableView = ui->tableView_listUsers;
 
     proxyModel = new QSortFilterProxyModel(this);
@@ -20,13 +20,15 @@ MainWindow::MainWindow(QWidget *parent) :
     proxyModel->setSourceModel(model);
     proxyModel->setFilterKeyColumn(0);
 
-    tableView->setModel(proxyModel);
 
-    tableView->sortByColumn(4, Qt::DescendingOrder);
+    tableView->setModel(proxyModel);
+    tableView->setSortingEnabled(true);
+    tableView->sortByColumn(4, Qt::AscendingOrder);
     //Status
     tableView->hideColumn(5);
     //Address
     tableView->hideColumn(2);
+    tableView->verticalHeader()->setVisible(false);
     qDebug() << model->lastError().text();
 }
 

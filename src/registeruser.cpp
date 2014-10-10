@@ -21,16 +21,21 @@ void RegisterUser::on_buttonBox_accepted()
 {
     MainWindow conn;
 
-    QString name, phone, address, email, expirationDate;
+    QString name, phone, address, email;
+    QDate expirationDate;
     name = ui->lineEdit_Name->text();
     phone = ui->lineEdit_Phone->text();
     address = ui->lineEdit_Addr->text();
     email = ui->lineEdit_Email->text();
-    expirationDate = ui->dateEdit->text();
+    expirationDate = ui->dateEdit->date();
 
-    QSqlQuery query;
-    query.prepare("insert into contacts (name, phone, address, email, expirationDate, status) values ('"+name+"','"+phone+"','"+address+"','"+email+"', '"+expirationDate+"', 'O')");
-    if(query.exec()){
-        QMessageBox::critical(this,tr("Save"),tr("Saved"));
-    }
+    QSqlRecord record = conn.getModel()->record();
+    record.setValue("name", name);
+    record.setValue("phone", phone);
+    record.setValue("address", address);
+    record.setValue("email", email);
+    record.setValue("expirationDate", expirationDate);
+    record.setValue("status", "O");
+
+    conn.getModel()->insertRecord(-1, record);
 }

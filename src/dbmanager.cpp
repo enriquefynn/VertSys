@@ -11,8 +11,8 @@ bool DBManager::openDB()
         status = db.open();
         QSqlQuery query(db);
         qDebug() << "Creating tables" << endl;
-        query.exec("CREATE TABLE contacts (name VARCHAR(32), phone VARCHAR(16), address VARCHAR(40),\
-                   email VARCHAR(50), expirationDate DATE, status CHAR(1), PRIMARY KEY (email))");
+        query.exec("CREATE TABLE climber (name VARCHAR(32), phone VARCHAR(16), address VARCHAR(40),\
+                   email VARCHAR(50), expirationDate DATE, startDate DATE, status CHAR(1), PRIMARY KEY (email))");
     }
     else
         status = db.open();
