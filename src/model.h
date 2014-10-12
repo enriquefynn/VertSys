@@ -11,4 +11,5 @@ public:
     QVariant data(const QModelIndex &index, int role) const;
     bool insertClimber(QString &name, QString &phone, QString &address, QString &email, QDate &expirationDate, QDate &startDate);
     void update();
+
 };

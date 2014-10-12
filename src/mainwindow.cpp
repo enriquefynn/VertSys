@@ -1,6 +1,4 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include "registeruser.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -10,7 +8,10 @@ MainWindow::MainWindow(QWidget *parent) :
     model = new MyModel(this);
     model->setTable("climber");
     model->select();
-    model->setEditStrategy(QSqlTableModel::OnFieldChange);
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("Nome"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("Telefone"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("Email"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("Vencimento"));
 
     proxyModel = new QSortFilterProxyModel(this);
     proxyModel->setDynamicSortFilter(true);
@@ -20,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     tableView = ui->tableView_listUsers;
 
-    tableView->setModel(proxyModel);
+    tableView->setModel(model);
     tableView->setSortingEnabled(true);
     tableView->sortByColumn(4, Qt::AscendingOrder);
     //Date_Start
@@ -30,7 +31,6 @@ MainWindow::MainWindow(QWidget *parent) :
     //Address
     tableView->hideColumn(2);
     tableView->verticalHeader()->setVisible(false);
-    tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     qDebug() << model->lastError().text();
 }

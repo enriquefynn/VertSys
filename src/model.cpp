@@ -1,12 +1,13 @@
 #include <QBrush>
 #include <QtDebug>
 #include <QSqlRecord>
-
+#include <QTimer>
 #include "model.h"
 
 MyModel::MyModel(QObject *parent) :
     QSqlTableModel(parent)
 {
+
 }
 
 void MyModel::update()
@@ -22,8 +23,8 @@ QVariant MyModel::data(const QModelIndex &index, int role) const
         QDate value = QDate::fromString(QSqlQueryModel::data(index, Qt::DisplayRole).toString(), "yyyy-MM-dd");
         switch(role)
         {
-            //case Qt::DisplayRole:
-            //    return value.toString("dd/MM/yyyy");
+            case Qt::DisplayRole:
+                return value;
 
             case Qt::BackgroundRole:
                 QDate today = QDate::currentDate();
@@ -35,7 +36,9 @@ QVariant MyModel::data(const QModelIndex &index, int role) const
                 break;
         }
     }
-    return QSqlTableModel::data(index,role);
+    if (role == Qt::DisplayRole)
+        return QSqlTableModel::data(index,role);
+    return QVariant();
 }
 
 bool MyModel::insertClimber(QString &name, QString &phone, QString &address, QString &email, QDate &expirationDate, QDate &startDate)
@@ -49,6 +52,5 @@ bool MyModel::insertClimber(QString &name, QString &phone, QString &address, QSt
     rec.setValue("startDate", startDate);
     rec.setValue("status", "O");
     bool ret = insertRecord(-1, rec);
-
     return ret;
 }

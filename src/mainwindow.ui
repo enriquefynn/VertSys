@@ -42,7 +42,11 @@
      </layout>
     </item>
     <item>
-     <widget class="QTableView" name="tableView_listUsers"/>
+     <widget class="QTableView" name="tableView_listUsers">
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectRows</enum>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

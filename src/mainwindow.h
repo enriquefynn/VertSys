@@ -9,6 +9,7 @@
 
 #include "registeruser.h"
 #include "model.h"
+#include "ui_mainwindow.h"
 
 namespace Ui {
 class MainWindow;
