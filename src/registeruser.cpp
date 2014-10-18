@@ -11,6 +11,8 @@ RegisterUser::RegisterUser(QWidget *parent) :
     ui->setupUi(this);
     ui->dateEdit->setDate(QDate::currentDate());
     ui->dateEdit_Start->setDate(QDate::currentDate());
+    connect(this, SIGNAL(insertClimber(Climber*&)),
+            parent, SLOT(insertClimber(Climber*&)));
 }
 
 RegisterUser::~RegisterUser()
@@ -20,9 +22,7 @@ RegisterUser::~RegisterUser()
 
 void RegisterUser::on_buttonBox_accepted()
 {
-    MainWindow conn;
-
-    QString name, phone, address, email;
+    QString name, phone, address, email, status = "I";
     QDate expirationDate, startDate;
     name = ui->lineEdit_Name->text();
     phone = ui->lineEdit_Phone->text();
@@ -30,5 +30,6 @@ void RegisterUser::on_buttonBox_accepted()
     email = ui->lineEdit_Email->text();
     expirationDate = ui->dateEdit->date();
     startDate = ui->dateEdit_Start->date();
-    conn.getModel()->insertClimber(name, phone, address, email, expirationDate, startDate);
+    Climber *c = new Climber(name, phone, address, email, expirationDate, startDate, status);
+    emit insertClimber(c);
 }

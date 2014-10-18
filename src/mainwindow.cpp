@@ -5,7 +5,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    model = new MyModel(this);
+    connect(this, SIGNAL(updateFilter(QString)),
+        ui->tabWidget, SLOT(updateFilter(QString)));
+
+    connect(this, SIGNAL(insertClimberInDB(Climber *&)),
+        ui->tabWidget, SLOT(insertClimberInDB(Climber *&)));
+
+    /*model = new MyModel(this);
     model->setTable("climber");
     model->select();
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("Nome"));
@@ -21,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     tableView = ui->tableView_listUsers;
 
-    tableView->setModel(model);
+    tableView->setModel(proxyModel);
     tableView->setSortingEnabled(true);
     tableView->sortByColumn(4, Qt::AscendingOrder);
     //Date_Start
@@ -32,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
     tableView->hideColumn(2);
     tableView->verticalHeader()->setVisible(false);
 
-    qDebug() << model->lastError().text();
+    qDebug() << model->lastError().text();*/
 }
 
 MainWindow::~MainWindow()
@@ -48,5 +54,13 @@ void MainWindow::on_actionNew_Climber_triggered()
 
 void MainWindow::on_lineEdit_search_textChanged(const QString &str)
 {
-    proxyModel->setFilterRegExp(str);
+    emit updateFilter(str);
+    //TabWidget::proxyModel->setFilterRegExp(str);
 }
+
+void MainWindow::insertClimber(Climber *&climber)
+{
+    emit insertClimberInDB(climber);
+}
+
+

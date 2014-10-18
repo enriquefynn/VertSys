@@ -42,11 +42,7 @@
      </layout>
     </item>
     <item>
-     <widget class="QTableView" name="tableView_listUsers">
-      <property name="selectionBehavior">
-       <enum>QAbstractItemView::SelectRows</enum>
-      </property>
-     </widget>
+     <widget class="TabWidget" name="tabWidget"/>
     </item>
    </layout>
   </widget>
@@ -94,6 +90,14 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>TabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>tabwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="icons.qrc"/>
  </resources>

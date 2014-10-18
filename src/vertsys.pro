@@ -16,12 +16,16 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     registeruser.cpp \
     dbmanager.cpp \
-    model.cpp
+    model.cpp \
+    tabwidget.cpp \
+    climber.cpp
 
 HEADERS  += mainwindow.h \
     registeruser.h \
     dbmanager.h \
-    model.h
+    model.h \
+    tabwidget.h \
+    climber.h
 
 FORMS    += mainwindow.ui \
     registeruser.ui

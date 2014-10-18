@@ -1,6 +1,9 @@
 #pragma once
 
 #include <QDialog>
+#include <QDate>
+
+#include "climber.h"
 
 namespace Ui {
 class RegisterUser;
@@ -16,6 +19,9 @@ public:
 
 private slots:
     void on_buttonBox_accepted();
+
+signals:
+    void insertClimber(Climber *&climber);
 
 private:
     Ui::RegisterUser *ui;
