@@ -43,6 +43,7 @@ QVariant MyModel::data(const QModelIndex &index, int role) const
 
 bool MyModel::insertClimber(Climber *&climber)
 {
+    emit layoutAboutToBeChanged();
     QSqlRecord rec = record();
     rec.setValue("name", climber->getName());
     rec.setValue("phone", climber->getPhone());
@@ -50,7 +51,7 @@ bool MyModel::insertClimber(Climber *&climber)
     rec.setValue("email", climber->getEmail());
     rec.setValue("expirationDate", climber->getExpirationDate());
     rec.setValue("startDate", climber->getStartDate());
-    rec.setValue("status", "O");
+    rec.setValue("status", climber->getStatus());
     bool ret = insertRowIntoTable(rec);
     qDebug() << "INSERTED: " << ret << endl;
     emit layoutChanged();

@@ -22,7 +22,7 @@ RegisterUser::~RegisterUser()
 
 void RegisterUser::on_buttonBox_accepted()
 {
-    QString name, phone, address, email, status = "I";
+    QString name, phone, address, email, status;
     QDate expirationDate, startDate;
     name = ui->lineEdit_Name->text();
     phone = ui->lineEdit_Phone->text();
@@ -30,6 +30,11 @@ void RegisterUser::on_buttonBox_accepted()
     email = ui->lineEdit_Email->text();
     expirationDate = ui->dateEdit->date();
     startDate = ui->dateEdit_Start->date();
+    int comboIdx = ui->comboBox->currentIndex();
+    if (!comboIdx)
+        status = "A";
+    else
+        status = "D";
     Climber *c = new Climber(name, phone, address, email, expirationDate, startDate, status);
     emit insertClimber(c);
 }
