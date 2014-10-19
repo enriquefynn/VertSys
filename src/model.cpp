@@ -52,6 +52,7 @@ bool MyModel::insertClimber(Climber *&climber)
     rec.setValue("startDate", climber->getStartDate());
     rec.setValue("status", climber->getStatus());
     bool ret = insertRecord(-1, rec);
+    submitAll();
     emit layoutChanged();
     qDebug() << "INSERTED: " << ret << endl;
     return ret;
@@ -59,5 +60,8 @@ bool MyModel::insertClimber(Climber *&climber)
 
 bool MyModel::removeClimber(int row)
 {
-    return removeRows(row, 1);
+    bool ret = removeRows(row, 1);
+    submitAll();
+    emit layoutChanged();
+    return ret;
 }
