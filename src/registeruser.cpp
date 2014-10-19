@@ -11,6 +11,7 @@ RegisterUser::RegisterUser(QWidget *parent) :
     ui->setupUi(this);
     ui->dateEdit->setDate(QDate::currentDate());
     ui->dateEdit_Start->setDate(QDate::currentDate());
+
     connect(this, SIGNAL(insertClimber(Climber*&)),
             parent, SLOT(insertClimber(Climber*&)));
 }

@@ -22,6 +22,7 @@ signals:
 public slots:
     void updateFilter(QString str);
     void insertClimberInDB(Climber *&climber);
+    void removeClimber();
 
 private:
     void setupTabs();

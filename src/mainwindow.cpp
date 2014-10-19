@@ -11,34 +11,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this, SIGNAL(insertClimberInDB(Climber *&)),
         ui->tabWidget, SLOT(insertClimberInDB(Climber *&)));
 
-    /*model = new MyModel(this);
-    model->setTable("climber");
-    model->select();
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("Nome"));
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("Telefone"));
-    model->setHeaderData(3, Qt::Horizontal, QObject::tr("Email"));
-    model->setHeaderData(4, Qt::Horizontal, QObject::tr("Vencimento"));
-
-    proxyModel = new QSortFilterProxyModel(this);
-    proxyModel->setDynamicSortFilter(true);
-    proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
-    proxyModel->setSourceModel(model);
-    proxyModel->setFilterKeyColumn(0);
-
-    tableView = ui->tableView_listUsers;
-
-    tableView->setModel(proxyModel);
-    tableView->setSortingEnabled(true);
-    tableView->sortByColumn(4, Qt::AscendingOrder);
-    //Date_Start
-    tableView->hideColumn(5);
-    //Status
-    tableView->hideColumn(6);
-    //Address
-    tableView->hideColumn(2);
-    tableView->verticalHeader()->setVisible(false);
-
-    qDebug() << model->lastError().text();*/
+    connect(this, SIGNAL(removeClimber()),
+        ui->tabWidget, SLOT(removeClimber()));
 }
 
 MainWindow::~MainWindow()
@@ -63,4 +37,7 @@ void MainWindow::insertClimber(Climber *&climber)
     emit insertClimberInDB(climber);
 }
 
-
+void MainWindow::on_actionRemove_Climber_triggered()
+{
+    emit removeClimber();
+}

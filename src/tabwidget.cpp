@@ -69,3 +69,18 @@ void TabWidget::insertClimberInDB(Climber *&climber)
     qDebug() << climber->getName();
     model->insertClimber(climber);
 }
+
+void TabWidget::removeClimber()
+{
+    QTableView *temp = static_cast<QTableView*>(currentWidget());
+    QItemSelectionModel *selectionModel = temp->selectionModel();
+    QModelIndexList indexes = selectionModel->selectedRows();
+    QSortFilterProxyModel *proxy = static_cast<QSortFilterProxyModel*>(temp->model());
+    QModelIndex idx;
+    int row;
+    foreach (idx, indexes) {
+        row = proxy->mapToSource(idx).row();
+        model->removeClimber(row);
+        //qDebug() << row << endl;
+    }
+}

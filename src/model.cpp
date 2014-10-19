@@ -56,3 +56,8 @@ bool MyModel::insertClimber(Climber *&climber)
     qDebug() << "INSERTED: " << ret << endl;
     return ret;
 }
+
+bool MyModel::removeClimber(int row)
+{
+    return removeRows(row, 1);
+}

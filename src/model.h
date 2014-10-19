@@ -12,5 +12,6 @@ public:
     MyModel(QObject *parent);
     QVariant data(const QModelIndex &index, int role) const;
     bool insertClimber(Climber *&climber);
+    bool removeClimber(int row);
     void update();
 };

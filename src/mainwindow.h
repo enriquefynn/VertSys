@@ -25,12 +25,15 @@ private slots:
     void on_actionNew_Climber_triggered();
     void on_lineEdit_search_textChanged(const QString &arg1);
 
+    void on_actionRemove_Climber_triggered();
+
 public slots:
     void insertClimber(Climber *&climber);
 
 signals:
     void updateFilter(QString str);
     void insertClimberInDB(Climber *&climber);
+    void removeClimber();
 
 private:
     Ui::MainWindow *ui;

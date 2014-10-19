@@ -60,6 +60,7 @@
      <string>VertSys</string>
     </property>
     <addaction name="actionNew_Climber"/>
+    <addaction name="actionRemove_Climber"/>
    </widget>
    <addaction name="menuVertSys"/>
   </widget>
@@ -77,6 +78,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionNew_Climber"/>
+   <addaction name="actionRemove_Climber"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionNew_Climber">
@@ -86,6 +88,15 @@
    </property>
    <property name="text">
     <string>Novo Escalador</string>
+   </property>
+  </action>
+  <action name="actionRemove_Climber">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/general/icons/Rem-climber.png</normaloff>:/general/icons/Rem-climber.png</iconset>
+   </property>
+   <property name="text">
+    <string>Remover Escalador</string>
    </property>
   </action>
  </widget>
