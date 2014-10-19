@@ -29,6 +29,7 @@ private slots:
 
 public slots:
     void insertClimber(Climber *&climber);
+    void rowSelected(QModelIndex x, QModelIndex y);
 
 signals:
     void updateFilter(QString str);

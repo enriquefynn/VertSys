@@ -91,6 +91,9 @@
    </property>
   </action>
   <action name="actionRemove_Climber">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="icons.qrc">
      <normaloff>:/general/icons/Rem-climber.png</normaloff>:/general/icons/Rem-climber.png</iconset>

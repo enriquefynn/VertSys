@@ -41,3 +41,12 @@ void MainWindow::on_actionRemove_Climber_triggered()
 {
     emit removeClimber();
 }
+
+void MainWindow::rowSelected(QModelIndex x, QModelIndex y)
+{
+    Q_UNUSED(y);
+    if (x.isValid())
+        ui->actionRemove_Climber->setEnabled(true);
+    else
+        ui->actionRemove_Climber->setEnabled(false);
+}

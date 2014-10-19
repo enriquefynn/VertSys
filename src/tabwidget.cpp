@@ -37,6 +37,7 @@ void TabWidget::setupTabs()
         proxyModel->setDynamicSortFilter(true);
 
         QTableView *tableView = new QTableView;
+
         tableView->setModel(proxyModel);
         tableView->setSortingEnabled(true);
         tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -51,6 +52,11 @@ void TabWidget::setupTabs()
         //Address
         tableView->hideColumn(2);
         tableView->verticalHeader()->setVisible(false);
+
+        //Connect the select to disable buttons
+        QItemSelectionModel *sm = tableView->selectionModel();
+        connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
+                parentWidget()->parentWidget(), SLOT(rowSelected(QModelIndex,QModelIndex)));
 
         proxyModel->setFilterRegExp(QRegExp(charNames[i], Qt::CaseInsensitive));
         proxyModel->setFilterKeyColumn(6);
@@ -68,6 +74,8 @@ void TabWidget::insertClimberInDB(Climber *&climber)
 {
     qDebug() << climber->getName();
     model->insertClimber(climber);
+    QTableView *temp = static_cast<QTableView*>(currentWidget());
+    temp->setCurrentIndex(QModelIndex());
 }
 
 void TabWidget::removeClimber()
