@@ -13,5 +13,6 @@ public:
     QVariant data(const QModelIndex &index, int role) const;
     bool insertClimber(Climber *&climber);
     bool removeClimber(int row);
-    void update();
+    void toggleActivity(int row);
+    Climber * getClimber(int row);
 };

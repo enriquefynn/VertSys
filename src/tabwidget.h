@@ -18,11 +18,15 @@ public:
     explicit TabWidget(QWidget *parent = 0);
     
 signals:
-    
+    void updateClimberInfo(Climber *climber);
+
 public slots:
     void updateFilter(QString str);
     void insertClimberInDB(Climber *&climber);
     void removeClimber();
+    void updateIdx();
+    void toggleActivity();
+    void updateClimberInfo();
 
 private:
     void setupTabs();
@@ -31,4 +35,5 @@ private:
     QTableView *tableView;
     QSortFilterProxyModel *proxyTextModel;
     QSortFilterProxyModel *proxyModel;
+    int selectedRow();
 };

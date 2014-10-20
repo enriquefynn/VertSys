@@ -7,13 +7,7 @@
 MyModel::MyModel(QObject *parent) :
     QSqlTableModel(parent)
 {
-
-}
-
-void MyModel::update()
-{
-    qDebug() << "Updating..." << endl;
-    emit layoutChanged();
+    setEditStrategy(QSqlTableModel::OnFieldChange);
 }
 
 QVariant MyModel::data(const QModelIndex &index, int role) const
@@ -64,4 +58,31 @@ bool MyModel::removeClimber(int row)
     submitAll();
     emit layoutChanged();
     return ret;
+}
+
+void MyModel::toggleActivity(int row)
+{
+    if (index(row, 6).data() == "D")
+        setData(index(row, 6), "A");
+    else if (index(row, 6).data() == "A")
+        setData(index(row, 6), "I");
+    else
+        setData(index(row, 6), "A");
+    submitAll();
+    emit layoutChanged();
+}
+
+Climber * MyModel::getClimber(int row)
+{
+    QString name, phone, address, email, status;
+    QDate expirationDate, startDate;
+
+    name = index(row, 0).data().toString();
+    phone = index(row, 1).data().toString();
+    address = index(row, 2).data().toString();
+    email = index(row, 3).data().toString();
+    expirationDate = index(row, 4).data().toDate();
+    startDate = index(row, 5).data().toDate();
+    status = index(row, 6).data().toString();
+    return new Climber(name, phone, address, email, expirationDate, startDate, status);
 }

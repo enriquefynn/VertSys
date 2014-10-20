@@ -1,4 +1,3 @@
-
 #include "tabwidget.h"
 #include "mainwindow.h"
 
@@ -7,6 +6,11 @@ TabWidget::TabWidget(QWidget *parent) :
 {
     setupModel();
     setupTabs();
+    connect(this, SIGNAL(currentChanged(int)),
+           this, SLOT(updateIdx()));
+
+    connect(this, SIGNAL(updateClimberInfo(Climber*)),
+            static_cast<QTabWidget*>(parent->parent()), SLOT(recvClimberInfo(Climber*)));
 }
 
 void TabWidget::setupModel()
@@ -26,8 +30,8 @@ void TabWidget::setupTabs()
 {
     QStringList groups;
     QList<QString> charNames;
-    groups << tr("Todos") << tr("Ativos") << tr("Inativos") << tr("Diarios");
-    charNames << "" << "A" << "I" << "D";
+    groups << tr("Ativos") << tr("Todos") << tr("Inativos") << tr("Diarios");
+    charNames << "A" << "" << "I" << "D";
 
     for (int i = 0; i < groups.size(); ++i) {
         QString str = groups.at(i);
@@ -74,11 +78,30 @@ void TabWidget::insertClimberInDB(Climber *&climber)
 {
     qDebug() << climber->getName();
     model->insertClimber(climber);
-    QTableView *temp = static_cast<QTableView*>(currentWidget());
-    temp->setCurrentIndex(QModelIndex());
+    updateIdx();
 }
 
 void TabWidget::removeClimber()
+{
+    int row = selectedRow();
+    model->removeClimber(row);
+}
+
+//FIXME: Not really working
+void TabWidget::updateIdx()
+{
+    QTableView *temp = static_cast<QTableView*>(currentWidget());
+    qDebug() << QModelIndex() << endl;
+    temp->setCurrentIndex(QModelIndex());
+}
+
+void TabWidget::toggleActivity()
+{
+    int row = selectedRow();
+    model->toggleActivity(row);
+}
+
+int TabWidget::selectedRow()
 {
     QTableView *temp = static_cast<QTableView*>(currentWidget());
     QItemSelectionModel *selectionModel = temp->selectionModel();
@@ -86,9 +109,13 @@ void TabWidget::removeClimber()
     QSortFilterProxyModel *proxy = static_cast<QSortFilterProxyModel*>(temp->model());
     QModelIndex idx;
     int row;
-    foreach (idx, indexes) {
+    foreach (idx, indexes)
         row = proxy->mapToSource(idx).row();
-        model->removeClimber(row);
-        //qDebug() << row << endl;
-    }
+    return row;
+}
+
+void TabWidget::updateClimberInfo()
+{
+    int row = selectedRow();
+    emit updateClimberInfo(model->getClimber(row));
 }

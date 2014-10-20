@@ -60,9 +60,23 @@
      <string>VertSys</string>
     </property>
     <addaction name="actionNew_Climber"/>
+   </widget>
+   <widget class="QMenu" name="menuEscalador">
+    <property name="title">
+     <string>Escalador</string>
+    </property>
     <addaction name="actionRemove_Climber"/>
+    <addaction name="actionToggleActivity_Climber"/>
+    <addaction name="actionPay_Climber"/>
+   </widget>
+   <widget class="QMenu" name="menuEmail">
+    <property name="title">
+     <string>Email</string>
+    </property>
    </widget>
    <addaction name="menuVertSys"/>
+   <addaction name="menuEscalador"/>
+   <addaction name="menuEmail"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <property name="iconSize">
@@ -99,7 +113,17 @@
      <normaloff>:/general/icons/Rem-climber.png</normaloff>:/general/icons/Rem-climber.png</iconset>
    </property>
    <property name="text">
-    <string>Remover Escalador</string>
+    <string>Remover</string>
+   </property>
+  </action>
+  <action name="actionToggleActivity_Climber">
+   <property name="text">
+    <string>Ativar</string>
+   </property>
+  </action>
+  <action name="actionPay_Climber">
+   <property name="text">
+    <string>Pagar</string>
    </property>
   </action>
  </widget>

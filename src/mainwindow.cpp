@@ -13,6 +13,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(this, SIGNAL(removeClimber()),
         ui->tabWidget, SLOT(removeClimber()));
+
+    connect(this, SIGNAL(toggleActivity()),
+        ui->tabWidget, SLOT(toggleActivity()));
+
+    connect(this, SIGNAL(updateClimberInfo()),
+        ui->tabWidget, SLOT(updateClimberInfo()));
 }
 
 MainWindow::~MainWindow()
@@ -29,7 +35,6 @@ void MainWindow::on_actionNew_Climber_triggered()
 void MainWindow::on_lineEdit_search_textChanged(const QString &str)
 {
     emit updateFilter(str);
-    //TabWidget::proxyModel->setFilterRegExp(str);
 }
 
 void MainWindow::insertClimber(Climber *&climber)
@@ -49,4 +54,22 @@ void MainWindow::rowSelected(QModelIndex x, QModelIndex y)
         ui->actionRemove_Climber->setEnabled(true);
     else
         ui->actionRemove_Climber->setEnabled(false);
+}
+
+void MainWindow::on_actionToggleActivity_Climber_triggered()
+{
+    emit toggleActivity();
+}
+
+void MainWindow::on_actionPay_Climber_triggered()
+{
+    payment = new Payment(this);
+    emit updateClimberInfo();
+    payment->show();
+}
+
+void MainWindow::recvClimberInfo(Climber *climber)
+{
+    qDebug() << climber->getName();
+    emit updateClimberInfo(climber);
 }

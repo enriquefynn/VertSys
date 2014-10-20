@@ -18,17 +18,20 @@ SOURCES += main.cpp\
     dbmanager.cpp \
     model.cpp \
     tabwidget.cpp \
-    climber.cpp
+    climber.cpp \
+    payment.cpp
 
 HEADERS  += mainwindow.h \
     registeruser.h \
     dbmanager.h \
     model.h \
     tabwidget.h \
-    climber.h
+    climber.h \
+    payment.h
 
 FORMS    += mainwindow.ui \
-    registeruser.ui
+    registeruser.ui \
+    payment.ui
 
 RESOURCES += \
     icons.qrc
