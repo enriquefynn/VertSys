@@ -19,6 +19,7 @@ public:
     
 signals:
     void updateClimberInfo(Climber *&climber);
+    void updateActivateOption(int);
 
 public slots:
     void updateFilter(QString str);

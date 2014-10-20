@@ -87,3 +87,14 @@ void MainWindow::setExpirationDate(QDate date)
 {
     emit commitExpirationDate(date);
 }
+
+void MainWindow::updateActivateOption(int idx)
+{
+    ui->actionToggleActivity_Climber->setEnabled(true);
+    if (idx == 0)
+        ui->actionToggleActivity_Climber->setText("Inativar");
+    else if (idx == 1)
+        ui->actionToggleActivity_Climber->setEnabled(false);
+    else
+        ui->actionToggleActivity_Climber->setText("Ativar");
+}

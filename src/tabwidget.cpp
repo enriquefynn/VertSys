@@ -11,6 +11,9 @@ TabWidget::TabWidget(QWidget *parent) :
 
     connect(this, SIGNAL(updateClimberInfo(Climber*&)),
             static_cast<QMainWindow*>(parent->parent()), SLOT(recvClimberInfo(Climber*&)), Qt::UniqueConnection);
+
+    connect(this, SIGNAL(updateActivateOption(int)),
+            static_cast<QMainWindow*>(parent->parent()), SLOT(updateActivateOption(int)), Qt::UniqueConnection);
 }
 
 void TabWidget::setupModel()
@@ -76,7 +79,7 @@ void TabWidget::updateFilter(QString str)
 
 void TabWidget::insertClimberInDB(Climber *&climber)
 {
-    qDebug() << climber->getName();
+    qDebug() << "INSERTED: " << climber->getName();
     model->insertClimber(climber);
     updateIdx();
 }
@@ -91,7 +94,7 @@ void TabWidget::removeClimber()
 void TabWidget::updateIdx()
 {
     QTableView *temp = static_cast<QTableView*>(currentWidget());
-    qDebug() << QModelIndex() << endl;
+    emit updateActivateOption(currentIndex());
     temp->setCurrentIndex(QModelIndex());
 }
 

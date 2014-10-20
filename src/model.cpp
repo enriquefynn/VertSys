@@ -48,7 +48,6 @@ bool MyModel::insertClimber(Climber *&climber)
     bool ret = insertRecord(-1, rec);
     submitAll();
     emit layoutChanged();
-    qDebug() << "INSERTED: " << ret << endl;
     return ret;
 }
 

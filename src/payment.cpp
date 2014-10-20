@@ -22,7 +22,6 @@ void Payment::on_comboBox_currentIndexChanged(int index)
 
 void Payment::updateClimberInfo(Climber *&climber)
 {
-    qDebug() << "Name: " << climber->getName() << endl << "EXP: " << climber->getExpirationDate() << endl;
     name = climber->getName();
     expirationDate = climber->getExpirationDate();
     ui->calendarWidget->setSelectedDate(expirationDate);

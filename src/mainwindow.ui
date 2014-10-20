@@ -93,6 +93,7 @@
    </attribute>
    <addaction name="actionNew_Climber"/>
    <addaction name="actionRemove_Climber"/>
+   <addaction name="actionPay_Climber"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionNew_Climber">
@@ -117,11 +118,18 @@
    </property>
   </action>
   <action name="actionToggleActivity_Climber">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
-    <string>Ativar</string>
+    <string>Inativar</string>
    </property>
   </action>
   <action name="actionPay_Climber">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/general/icons/paying.png</normaloff>:/general/icons/paying.png</iconset>
+   </property>
    <property name="text">
     <string>Pagar</string>
    </property>
