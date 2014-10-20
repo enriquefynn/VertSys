@@ -119,9 +119,6 @@
    </property>
   </action>
   <action name="actionToggleActivity_Climber">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
    <property name="text">
     <string>Inativar</string>
    </property>
