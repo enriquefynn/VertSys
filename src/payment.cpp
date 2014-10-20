@@ -8,10 +8,6 @@ Payment::Payment(QWidget *parent) :
     ui->setupUi(this);
     expirationDate = ui->calendarWidget->selectedDate();
     ui->calendarWidget->setMinimumDate(expirationDate);
-
-    connect(parent, SIGNAL(updateClimberInfo(Climber *)),
-            this, SLOT(updateClimberInfo(Climber *)));
-
 }
 
 Payment::~Payment()
@@ -24,10 +20,21 @@ void Payment::on_comboBox_currentIndexChanged(int index)
     ui->calendarWidget->setSelectedDate(expirationDate.addMonths(index+1));
 }
 
-void Payment::updateClimberInfo(Climber *climber)
+void Payment::updateClimberInfo(Climber *&climber)
 {
     qDebug() << "Name: " << climber->getName() << endl << "EXP: " << climber->getExpirationDate() << endl;
     name = climber->getName();
     expirationDate = climber->getExpirationDate();
     ui->calendarWidget->setSelectedDate(expirationDate);
+}
+
+void Payment::on_buttonBox_accepted()
+{
+    emit setExpirationDate(ui->calendarWidget->selectedDate());
+    delete this;
+}
+
+void Payment::on_buttonBox_rejected()
+{
+    delete this;
 }

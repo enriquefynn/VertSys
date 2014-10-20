@@ -1,8 +1,6 @@
 #include "registeruser.h"
 #include "ui_registeruser.h"
 #include "mainwindow.h"
-#include <QMessageBox>
-#include <QDate>
 
 RegisterUser::RegisterUser(QWidget *parent) :
     QDialog(parent),
@@ -11,9 +9,8 @@ RegisterUser::RegisterUser(QWidget *parent) :
     ui->setupUi(this);
     ui->dateEdit->setDate(QDate::currentDate());
     ui->dateEdit_Start->setDate(QDate::currentDate());
-
     connect(this, SIGNAL(insertClimber(Climber*&)),
-            parent, SLOT(insertClimber(Climber*&)));
+            static_cast<QMainWindow*>(parent), SLOT(insertClimber(Climber*&)), Qt::UniqueConnection);
 }
 
 RegisterUser::~RegisterUser()
@@ -38,4 +35,10 @@ void RegisterUser::on_buttonBox_accepted()
         status = "D";
     Climber *c = new Climber(name, phone, address, email, expirationDate, startDate, status);
     emit insertClimber(c);
+    delete this;
+}
+
+void RegisterUser::on_buttonBox_rejected()
+{
+    delete this;
 }

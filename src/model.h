@@ -14,5 +14,9 @@ public:
     bool insertClimber(Climber *&climber);
     bool removeClimber(int row);
     void toggleActivity(int row);
-    Climber * getClimber(int row);
+    Climber *& getClimber(int row);
+    bool updateExpirationDate(int row, QDate date);
+
+private:
+    Climber *c;
 };

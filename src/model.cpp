@@ -72,7 +72,12 @@ void MyModel::toggleActivity(int row)
     emit layoutChanged();
 }
 
-Climber * MyModel::getClimber(int row)
+bool MyModel::updateExpirationDate(int row, QDate date)
+{
+    return setData(index(row, 4), date);
+}
+
+Climber *& MyModel::getClimber(int row)
 {
     QString name, phone, address, email, status;
     QDate expirationDate, startDate;
@@ -84,5 +89,6 @@ Climber * MyModel::getClimber(int row)
     expirationDate = index(row, 4).data().toDate();
     startDate = index(row, 5).data().toDate();
     status = index(row, 6).data().toString();
-    return new Climber(name, phone, address, email, expirationDate, startDate, status);
+    c = new Climber(name, phone, address, email, expirationDate, startDate, status);
+    return c;
 }

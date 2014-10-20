@@ -33,7 +33,8 @@ private slots:
 public slots:
     void insertClimber(Climber *&climber);
     void rowSelected(QModelIndex x, QModelIndex y);
-    void recvClimberInfo(Climber *climber);
+    void recvClimberInfo(Climber *&climber);
+    void setExpirationDate(QDate date);
 
 signals:
     void updateFilter(QString str);
@@ -41,15 +42,14 @@ signals:
     void removeClimber();
     void toggleActivity();
     void updateClimberInfo();
-    void updateClimberInfo(Climber *climber);
+    void updateClimberInfo(Climber *&climber);
+    void commitExpirationDate(QDate date);
 
 private:
     Ui::MainWindow *ui;
     RegisterUser *ru;
     Payment *payment;
-    //MyModel *model;
-    //QTableView *tableView;
-    //QSortFilterProxyModel *proxyModel;
+
 
 public:
     explicit MainWindow(QWidget *parent = 0);

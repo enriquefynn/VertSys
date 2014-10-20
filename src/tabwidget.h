@@ -18,7 +18,7 @@ public:
     explicit TabWidget(QWidget *parent = 0);
     
 signals:
-    void updateClimberInfo(Climber *climber);
+    void updateClimberInfo(Climber *&climber);
 
 public slots:
     void updateFilter(QString str);
@@ -27,6 +27,7 @@ public slots:
     void updateIdx();
     void toggleActivity();
     void updateClimberInfo();
+    void commitExpirationDate(QDate date);
 
 private:
     void setupTabs();

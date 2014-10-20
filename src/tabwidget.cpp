@@ -7,10 +7,10 @@ TabWidget::TabWidget(QWidget *parent) :
     setupModel();
     setupTabs();
     connect(this, SIGNAL(currentChanged(int)),
-           this, SLOT(updateIdx()));
+           this, SLOT(updateIdx()), Qt::UniqueConnection);
 
-    connect(this, SIGNAL(updateClimberInfo(Climber*)),
-            static_cast<QTabWidget*>(parent->parent()), SLOT(recvClimberInfo(Climber*)));
+    connect(this, SIGNAL(updateClimberInfo(Climber*&)),
+            static_cast<QMainWindow*>(parent->parent()), SLOT(recvClimberInfo(Climber*&)), Qt::UniqueConnection);
 }
 
 void TabWidget::setupModel()
@@ -60,7 +60,7 @@ void TabWidget::setupTabs()
         //Connect the select to disable buttons
         QItemSelectionModel *sm = tableView->selectionModel();
         connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
-                parentWidget()->parentWidget(), SLOT(rowSelected(QModelIndex,QModelIndex)));
+                parentWidget()->parentWidget(), SLOT(rowSelected(QModelIndex,QModelIndex)), Qt::UniqueConnection);
 
         proxyModel->setFilterRegExp(QRegExp(charNames[i], Qt::CaseInsensitive));
         proxyModel->setFilterKeyColumn(6);
@@ -118,4 +118,30 @@ void TabWidget::updateClimberInfo()
 {
     int row = selectedRow();
     emit updateClimberInfo(model->getClimber(row));
+}
+
+void TabWidget::commitExpirationDate(QDate date)
+{
+    int row = selectedRow();
+    Climber *c = model->getClimber(row);
+    if (model->updateExpirationDate(row, date))
+    {
+        QMessageBox msgBox;
+        msgBox.setIcon(QMessageBox::Information);
+        msgBox.setText("Pagamento do escalador " + c->getName() + " efetuado com sucesso!\nVencimento \
+na data: " + date.toString("dd/MM/yyyy"));
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setDefaultButton(QMessageBox::Ok);
+        msgBox.exec();
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setIcon(QMessageBox::Critical);
+        msgBox.setText("Não foi possível efetuar o pagamento!");
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setDefaultButton(QMessageBox::Ok);
+        msgBox.exec();
+    }
+    delete c;
 }
