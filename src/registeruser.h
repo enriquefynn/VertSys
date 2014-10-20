@@ -2,8 +2,10 @@
 
 #include <QDialog>
 #include <QDate>
+#include <QRegExpValidator>
 
 #include "climber.h"
+#include "phonevalidator.h"
 
 namespace Ui {
 class RegisterUser;
@@ -18,7 +20,6 @@ public:
     ~RegisterUser();
 
 private slots:
-    void on_buttonBox_accepted();
     void on_buttonBox_rejected();
 
 signals:
@@ -26,4 +27,10 @@ signals:
 
 private:
     Ui::RegisterUser *ui;
+    const QRegExp *emailRE;
+    const QRegExpValidator *emailVal;
+    const PhoneValidator *phoneValidator;
+
+protected:
+    void accept();
 };
