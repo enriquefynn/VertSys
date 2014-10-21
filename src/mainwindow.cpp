@@ -47,7 +47,13 @@ void MainWindow::insertClimber(Climber *&climber)
 
 void MainWindow::on_actionRemove_Climber_triggered()
 {
-    emit removeClimber();
+    QMessageBox msgBox;
+    msgBox.setIcon(QMessageBox::Critical);
+    msgBox.setText("Deseja realmente apagar o escalador?");
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    msgBox.setDefaultButton(QMessageBox::No);
+    if(msgBox.exec() == QMessageBox::Yes)
+        emit removeClimber();
 }
 
 void MainWindow::rowSelected(QModelIndex x, QModelIndex y)
