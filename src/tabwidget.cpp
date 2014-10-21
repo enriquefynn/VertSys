@@ -26,6 +26,7 @@ void TabWidget::setupModel()
     model->setHeaderData(3, Qt::Horizontal, QObject::tr("Email"));
     model->setHeaderData(4, Qt::Horizontal, QObject::tr("Vencimento"));
     proxyTextModel = new QSortFilterProxyModel(this);
+    proxyTextModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     proxyTextModel->setSourceModel(model);
 }
 

@@ -5,7 +5,6 @@
 #include <QtDebug>
 #include <QFileInfo>
 #include <QTableView>
-#include <QSortFilterProxyModel>
 
 #include "registeruser.h"
 #include "model.h"
