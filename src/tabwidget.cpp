@@ -33,8 +33,8 @@ void TabWidget::setupTabs()
 {
     QStringList groups;
     QList<QString> charNames;
-    groups << tr("Ativos") << tr("Todos") << tr("Inativos") << tr("Diarios");
-    charNames << "A" << "" << "I" << "D";
+    groups << tr("Mensalistas") << tr("Todos") << tr("Diarios");
+    charNames << "A" << "" << "D";
 
     for (int i = 0; i < groups.size(); ++i) {
         QString str = groups.at(i);

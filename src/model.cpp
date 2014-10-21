@@ -63,10 +63,8 @@ void MyModel::toggleActivity(int row)
 {
     if (index(row, 6).data() == "D")
         setData(index(row, 6), "A");
-    else if (index(row, 6).data() == "A")
-        setData(index(row, 6), "I");
     else
-        setData(index(row, 6), "A");
+        setData(index(row, 6), "D");
     submitAll();
     emit layoutChanged();
 }
