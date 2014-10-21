@@ -15,11 +15,6 @@ Payment::~Payment()
     delete ui;
 }
 
-void Payment::on_comboBox_currentIndexChanged(int index)
-{
-    ui->calendarWidget->setSelectedDate(expirationDate.addMonths(index+1));
-}
-
 void Payment::updateClimberInfo(Climber *&climber)
 {
     name = climber->getName();
@@ -37,4 +32,8 @@ void Payment::on_buttonBox_accepted()
 void Payment::on_buttonBox_rejected()
 {
     delete this;
+}
+void Payment::on_sliderPayment_sliderMoved(int position)
+{
+    ui->calendarWidget->setSelectedDate(expirationDate.addMonths(position));
 }

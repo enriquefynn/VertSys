@@ -24,9 +24,9 @@ public:
     ~Payment();
     
 private slots:
-    void on_comboBox_currentIndexChanged(int index);
     void on_buttonBox_accepted();
     void on_buttonBox_rejected();
+    void on_sliderPayment_sliderMoved(int position);
 
 signals:
     void setExpirationDate(QDate date);
