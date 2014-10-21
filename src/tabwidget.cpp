@@ -59,7 +59,6 @@ void TabWidget::setupTabs()
         tableView->hideColumn(6);
         //Address
         tableView->hideColumn(2);
-        tableView->verticalHeader()->setVisible(false);
 
         //Connect the select to disable buttons
         QItemSelectionModel *sm = tableView->selectionModel();

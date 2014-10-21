@@ -25,6 +25,7 @@ void Payment::updateClimberInfo(Climber *&climber)
     name = climber->getName();
     expirationDate = climber->getExpirationDate();
     ui->calendarWidget->setSelectedDate(expirationDate);
+    ui->calendarWidget->setMaximumDate(expirationDate.addYears(1));
 }
 
 void Payment::on_buttonBox_accepted()
