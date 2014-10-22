@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>405</width>
-    <height>300</height>
+    <height>330</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -55,6 +55,9 @@
             </property>
             <property name="maximum">
              <number>12</number>
+            </property>
+            <property name="pageStep">
+             <number>3</number>
             </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -106,8 +109,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>257</x>
-     <y>290</y>
+     <x>266</x>
+     <y>320</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -122,8 +125,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
+     <x>325</x>
+     <y>320</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>
@@ -133,7 +136,7 @@
   </connection>
   <connection>
    <sender>sliderPayment</sender>
-   <signal>sliderMoved(int)</signal>
+   <signal>valueChanged(int)</signal>
    <receiver>label_3</receiver>
    <slot>setNum(int)</slot>
    <hints>
@@ -142,8 +145,8 @@
      <y>41</y>
     </hint>
     <hint type="destinationlabel">
-     <x>358</x>
-     <y>45</y>
+     <x>110</x>
+     <y>46</y>
     </hint>
    </hints>
   </connection>

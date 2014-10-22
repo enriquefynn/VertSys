@@ -26,7 +26,7 @@ public:
 private slots:
     void on_buttonBox_accepted();
     void on_buttonBox_rejected();
-    void on_sliderPayment_sliderMoved(int position);
+    void on_sliderPayment_valueChanged(int value);
 
 signals:
     void setPayment(QDate date, double value);

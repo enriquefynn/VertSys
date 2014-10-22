@@ -34,7 +34,8 @@ void PaymentWindow::on_buttonBox_rejected()
 {
     delete this;
 }
-void PaymentWindow::on_sliderPayment_sliderMoved(int position)
+
+void PaymentWindow::on_sliderPayment_valueChanged(int position)
 {
-    ui->calendarWidget->setSelectedDate(expirationDate.addMonths(position));
+     ui->calendarWidget->setSelectedDate(expirationDate.addMonths(position));
 }
