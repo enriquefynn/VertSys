@@ -12,26 +12,26 @@ TARGET = vertsys
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
+SOURCES += main.cpp \
         mainwindow.cpp \
     registeruser.cpp \
     dbmanager.cpp \
-    model.cpp \
     tabwidget.cpp \
     climber.cpp \
     payment.cpp \
     phonevalidator.cpp \
-    emailvalidator.cpp
+    emailvalidator.cpp \
+    climbermodel.cpp
 
 HEADERS  += mainwindow.h \
     registeruser.h \
     dbmanager.h \
-    model.h \
     tabwidget.h \
-    climber.h \
     payment.h \
     phonevalidator.h \
-    emailvalidator.h
+    emailvalidator.h \
+    climber.h \
+    climbermodel.h
 
 FORMS    += mainwindow.ui \
     registeruser.ui \

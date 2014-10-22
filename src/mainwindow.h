@@ -7,7 +7,7 @@
 #include <QTableView>
 
 #include "registeruser.h"
-#include "model.h"
+//#include "model.h"
 #include "climber.h"
 #include "payment.h"
 #include "ui_mainwindow.h"

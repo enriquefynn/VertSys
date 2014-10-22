@@ -5,11 +5,11 @@
 
 #include "climber.h"
 
-class MyModel : public QSqlTableModel
+class ClimberModel : public QSqlTableModel
 {
     Q_OBJECT
 public:
-    MyModel(QObject *parent);
+    ClimberModel(QObject *parent);
     QVariant data(const QModelIndex &index, int role) const;
     bool insertClimber(Climber *&climber);
     bool removeClimber(int row);

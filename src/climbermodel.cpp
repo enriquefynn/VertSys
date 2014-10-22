@@ -2,15 +2,15 @@
 #include <QtDebug>
 #include <QSqlRecord>
 #include <QTimer>
-#include "model.h"
+#include "climbermodel.h"
 
-MyModel::MyModel(QObject *parent) :
+ClimberModel::ClimberModel(QObject *parent) :
     QSqlTableModel(parent)
 {
     setEditStrategy(QSqlTableModel::OnFieldChange);
 }
 
-QVariant MyModel::data(const QModelIndex &index, int role) const
+QVariant ClimberModel::data(const QModelIndex &index, int role) const
 {
     if (index.column() == 4)
     {
@@ -35,7 +35,7 @@ QVariant MyModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-bool MyModel::insertClimber(Climber *&climber)
+bool ClimberModel::insertClimber(Climber *&climber)
 {
     QSqlRecord rec = record();
     rec.setValue("name", climber->getName());
@@ -51,7 +51,7 @@ bool MyModel::insertClimber(Climber *&climber)
     return ret;
 }
 
-bool MyModel::removeClimber(int row)
+bool ClimberModel::removeClimber(int row)
 {
     bool ret = removeRows(row, 1);
     submitAll();
@@ -59,7 +59,7 @@ bool MyModel::removeClimber(int row)
     return ret;
 }
 
-void MyModel::toggleActivity(int row)
+void ClimberModel::toggleActivity(int row)
 {
     if (index(row, 6).data() == "D")
         setData(index(row, 6), "A");
@@ -69,12 +69,12 @@ void MyModel::toggleActivity(int row)
     emit layoutChanged();
 }
 
-bool MyModel::updateExpirationDate(int row, QDate date)
+bool ClimberModel::updateExpirationDate(int row, QDate date)
 {
     return setData(index(row, 4), date);
 }
 
-Climber *& MyModel::getClimber(int row)
+Climber *& ClimberModel::getClimber(int row)
 {
     QString name, phone, address, email, status;
     QDate expirationDate, startDate;

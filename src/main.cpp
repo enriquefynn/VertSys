@@ -3,7 +3,6 @@
 #include <QMessageBox>
 
 #include "mainwindow.h"
-#include "model.h"
 #include "dbmanager.h"
 
 int main(int argc, char *argv[])

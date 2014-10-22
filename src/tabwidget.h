@@ -8,7 +8,7 @@
 #include <QList>
 #include <QVBoxLayout>
 
-#include "model.h"
+#include "climbermodel.h"
 #include "climber.h"
 
 class TabWidget : public QTabWidget
@@ -33,7 +33,7 @@ public slots:
 private:
     void setupTabs();
     void setupModel();
-    MyModel *model;
+    ClimberModel *model;
     QTableView *tableView;
     QSortFilterProxyModel *proxyTextModel;
     QSortFilterProxyModel *proxyModel;

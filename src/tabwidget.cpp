@@ -18,7 +18,7 @@ TabWidget::TabWidget(QWidget *parent) :
 
 void TabWidget::setupModel()
 {
-    model = new MyModel(this);
+    model = new ClimberModel(this);
     model->setTable("climber");
     model->select();
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("Nome"));
