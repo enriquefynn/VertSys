@@ -91,9 +91,56 @@ void MainWindow::updateActivateOption(int idx)
 {
     ui->actionToggleActivity_Climber->setEnabled(true);
     if (idx == 0)
-        ui->actionToggleActivity_Climber->setText("Inativar");
+        ui->actionToggleActivity_Climber->setText(tr("Inativar"));
     else if (idx == 1)
         ui->actionToggleActivity_Climber->setEnabled(false);
     else
-        ui->actionToggleActivity_Climber->setText("Ativar");
+        ui->actionToggleActivity_Climber->setText(tr("Ativar"));
+}
+
+void MainWindow::on_actionExport_triggered()
+{
+    QString DBName = QFileDialog::getSaveFileName(this, tr("Salvar como..."), QString(), tr("DB (*.db)"));
+    if (!(DBName.endsWith(".db", Qt::CaseInsensitive)))
+            DBName += ".db";
+    QMessageBox msgBox;
+    if (QFile::copy("vertsys.db", DBName))
+    {
+        msgBox.setIcon(QMessageBox::Information);
+        msgBox.setText("Banco de dados exportado com sucesso!");
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setDefaultButton(QMessageBox::Ok);
+    }
+    else
+    {
+        msgBox.setIcon(QMessageBox::Critical);
+        msgBox.setText("Nao foi possivel exportar o banco de dados!");
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setDefaultButton(QMessageBox::Ok);
+    }
+    msgBox.exec();
+}
+
+void MainWindow::on_actionImport_triggered()
+{
+    QString DBName = QFileDialog::getOpenFileName(this, tr("Abrir"), QString(), tr("DB (*.db)"));
+    if (!(DBName.endsWith(".db", Qt::CaseInsensitive)))
+            DBName += ".db";
+    QMessageBox msgBox;
+    QFile::remove("vertsys.db");
+    if (QFile::copy(DBName, "vertsys.db"))
+    {
+        msgBox.setIcon(QMessageBox::Information);
+        msgBox.setText("Banco de dados importado com sucesso!");
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setDefaultButton(QMessageBox::Ok);
+    }
+    else
+    {
+        msgBox.setIcon(QMessageBox::Critical);
+        msgBox.setText("Nao foi possivel importar o banco de dados!");
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setDefaultButton(QMessageBox::Ok);
+    }
+    msgBox.exec();
 }

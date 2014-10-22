@@ -12,10 +12,11 @@ bool DBManager::openDB()
     db = QSqlDatabase::addDatabase("QSQLITE");
     QFileInfo fileInfo("vertsys.db");
     db.setDatabaseName(fileInfo.absoluteFilePath());
-    bool status = db.open();
-    QSqlQuery query(db);
+    bool status;
     if (!fileInfo.exists())
     {
+        status = db.open();
+        QSqlQuery query(db);
         qDebug() << "Creating tables" << endl;
         query.exec("CREATE TABLE climber (name VARCHAR(32), phone VARCHAR(16), address VARCHAR(40),\
                    email VARCHAR(50), expirationDate DATE, startDate DATE, status CHAR(1), PRIMARY KEY (email))");
@@ -23,6 +24,8 @@ bool DBManager::openDB()
     }
     else
     {
+        status = db.open();
+        QSqlQuery query(db);
         //Check if db is not v1
         if (!db.tables().contains("payment"))
         {

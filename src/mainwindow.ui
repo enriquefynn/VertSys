@@ -60,6 +60,8 @@
      <string>VertSys</string>
     </property>
     <addaction name="actionNew_Climber"/>
+    <addaction name="actionImport"/>
+    <addaction name="actionExport"/>
     <addaction name="actionClose"/>
    </widget>
    <widget class="QMenu" name="menuEscalador">
@@ -135,6 +137,16 @@
   <action name="actionClose">
    <property name="text">
     <string>Fechar</string>
+   </property>
+  </action>
+  <action name="actionExport">
+   <property name="text">
+    <string>Exportar</string>
+   </property>
+  </action>
+  <action name="actionImport">
+   <property name="text">
+    <string>Importar</string>
    </property>
   </action>
  </widget>

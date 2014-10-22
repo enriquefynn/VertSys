@@ -5,6 +5,7 @@
 #include <QtDebug>
 #include <QFileInfo>
 #include <QTableView>
+#include <QFileDialog>
 
 #include "registeruser.h"
 //#include "model.h"
@@ -29,6 +30,10 @@ private slots:
 
     void on_actionPay_Climber_triggered();
 
+    void on_actionExport_triggered();
+
+    void on_actionImport_triggered();
+
 public slots:
     void insertClimber(Climber *&climber);
     void rowSelected(QModelIndex x, QModelIndex y);
@@ -47,7 +52,6 @@ private:
     Ui::MainWindow *ui;
     RegisterUser *ru;
     PaymentWindow *payment;
-
 
 public:
     explicit MainWindow(QWidget *parent = 0);
