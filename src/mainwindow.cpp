@@ -19,9 +19,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(this, SIGNAL(updateClimberInfo()),
         ui->tabWidget, SLOT(updateClimberInfo()), Qt::UniqueConnection);
-
-    connect(this, SIGNAL(commitExpirationDate(QDate)),
-        ui->tabWidget, SLOT(commitExpirationDate(QDate)), Qt::UniqueConnection);
 }
 
 MainWindow::~MainWindow()
