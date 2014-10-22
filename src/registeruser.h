@@ -6,6 +6,7 @@
 
 #include "climber.h"
 #include "phonevalidator.h"
+#include "emailvalidator.h"
 
 namespace Ui {
 class RegisterUser;
@@ -27,9 +28,8 @@ signals:
 
 private:
     Ui::RegisterUser *ui;
-    const QRegExp *emailRE;
-    const QRegExpValidator *emailVal;
     const PhoneValidator *phoneValidator;
+    const EmailValidator *emailValidator;
 
 protected:
     void accept();

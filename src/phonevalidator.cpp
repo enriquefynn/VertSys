@@ -28,9 +28,8 @@ QValidator::State PhoneValidator::validate(QString &input, int &pos) const
     QRegExp sep("[\\(]{0,1}[\\d]\{0,2}[\\)]{0,1}\\s*\\d*[\\-]{0,1}\\d*");
 
     if (sep.exactMatch(input))
-    {
         return QValidator::Acceptable;
-    }
+
     return QValidator::Invalid;
 }
 

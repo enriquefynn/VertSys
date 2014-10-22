@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     tabwidget.cpp \
     climber.cpp \
     payment.cpp \
-    phonevalidator.cpp
+    phonevalidator.cpp \
+    emailvalidator.cpp
 
 HEADERS  += mainwindow.h \
     registeruser.h \
@@ -29,7 +30,8 @@ HEADERS  += mainwindow.h \
     tabwidget.h \
     climber.h \
     payment.h \
-    phonevalidator.h
+    phonevalidator.h \
+    emailvalidator.h
 
 FORMS    += mainwindow.ui \
     registeruser.ui \

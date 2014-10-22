@@ -11,11 +11,10 @@ RegisterUser::RegisterUser(QWidget *parent) :
     ui->dateEdit_Start->setDate(QDate::currentDate());
 
     phoneValidator = new PhoneValidator();
-    ui->lineEdit_Phone->setValidator(phoneValidator);
+    emailValidator = new EmailValidator();
 
-    emailRE = new QRegExp("^\\w+@\\w+[.\\w+]+$");
-    emailVal = new QRegExpValidator(*emailRE);
-    ui->lineEdit_Email->setValidator(emailVal);
+    ui->lineEdit_Phone->setValidator(phoneValidator);
+    ui->lineEdit_Email->setValidator(emailValidator);
 
     connect(this, SIGNAL(insertClimber(Climber*&)),
             static_cast<QMainWindow*>(parent), SLOT(insertClimber(Climber*&)), Qt::UniqueConnection);
@@ -23,9 +22,8 @@ RegisterUser::RegisterUser(QWidget *parent) :
 
 RegisterUser::~RegisterUser()
 {
-    delete emailRE;
-    delete emailVal;
     delete phoneValidator;
+    delete emailValidator;
     delete ui;
 }
 
@@ -40,7 +38,7 @@ void RegisterUser::accept()
     QDate expirationDate, startDate;
     email = ui->lineEdit_Email->text();
     //Validate Email
-    if (!emailRE->exactMatch(email))
+    if (!EmailValidator::isValid(email))
     {
         QMessageBox msgBox;
         msgBox.setIcon(QMessageBox::Critical);
