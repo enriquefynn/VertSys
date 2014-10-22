@@ -33,7 +33,6 @@ public slots:
     void insertClimber(Climber *&climber);
     void rowSelected(QModelIndex x, QModelIndex y);
     void recvClimberInfo(Climber *&climber);
-//    void setExpirationDate(QDate date);
     void updateActivateOption(int idx);
 
 signals:

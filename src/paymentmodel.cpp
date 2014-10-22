@@ -16,6 +16,5 @@ bool PaymentModel::insertPayment(Payment &payment)
     rec.setValue("value", payment.getValue());
     bool ret = insertRecord(-1, rec);
     submitAll();
-    emit layoutChanged();
     return ret;
 }

@@ -47,7 +47,6 @@ bool ClimberModel::insertClimber(Climber *&climber)
     rec.setValue("status", climber->getStatus());
     bool ret = insertRecord(-1, rec);
     submitAll();
-    emit layoutChanged();
     return ret;
 }
 
@@ -55,7 +54,6 @@ bool ClimberModel::removeClimber(int row)
 {
     bool ret = removeRows(row, 1);
     submitAll();
-    emit layoutChanged();
     return ret;
 }
 
@@ -66,7 +64,6 @@ void ClimberModel::toggleActivity(int row)
     else
         setData(index(row, 6), "D");
     submitAll();
-    emit layoutChanged();
 }
 
 bool ClimberModel::updateExpirationDate(int row, QDate date)

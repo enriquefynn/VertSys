@@ -84,6 +84,7 @@ void MainWindow::on_actionPay_Climber_triggered()
     payment->show();
 
 }
+
 void MainWindow::recvClimberInfo(Climber *&climber)
 {
     emit updateClimberInfo(climber);

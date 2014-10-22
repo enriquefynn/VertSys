@@ -25,7 +25,6 @@ void PaymentWindow::updateClimberInfo(Climber *&climber)
 
 void PaymentWindow::on_buttonBox_accepted()
 {
-    //emit setExpirationDate(ui->calendarWidget->selectedDate());
     emit setPayment(ui->calendarWidget->selectedDate(), ui->valueSpin->value());
     delete this;
 }
