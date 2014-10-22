@@ -1,5 +1,6 @@
 #include "tabwidget.h"
 #include "mainwindow.h"
+#include "payment.h"
 
 TabWidget::TabWidget(QWidget *parent) :
     QTabWidget(parent)
@@ -18,16 +19,20 @@ TabWidget::TabWidget(QWidget *parent) :
 
 void TabWidget::setupModel()
 {
-    model = new ClimberModel(this);
-    model->setTable("climber");
-    model->select();
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("Nome"));
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("Telefone"));
-    model->setHeaderData(3, Qt::Horizontal, QObject::tr("Email"));
-    model->setHeaderData(4, Qt::Horizontal, QObject::tr("Vencimento"));
+    climberModel = new ClimberModel(this);
+    climberModel->setTable("climber");
+    climberModel->select();
+    climberModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Nome"));
+    climberModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Telefone"));
+    climberModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Email"));
+    climberModel->setHeaderData(4, Qt::Horizontal, QObject::tr("Vencimento"));
     proxyTextModel = new QSortFilterProxyModel(this);
     proxyTextModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
-    proxyTextModel->setSourceModel(model);
+    proxyTextModel->setSourceModel(climberModel);
+
+
+    paymentModel = new PaymentModel(this);
+    paymentModel->setTable("payment");
 }
 
 void TabWidget::setupTabs()
@@ -80,14 +85,14 @@ void TabWidget::updateFilter(QString str)
 void TabWidget::insertClimberInDB(Climber *&climber)
 {
     qDebug() << "INSERTED: " << climber->getName();
-    model->insertClimber(climber);
+    climberModel->insertClimber(climber);
     updateIdx();
 }
 
 void TabWidget::removeClimber()
 {
     int row = selectedRow();
-    model->removeClimber(row);
+    climberModel->removeClimber(row);
 }
 
 //FIXME: Not really working
@@ -101,7 +106,7 @@ void TabWidget::updateIdx()
 void TabWidget::toggleActivity()
 {
     int row = selectedRow();
-    model->toggleActivity(row);
+    climberModel->toggleActivity(row);
 }
 
 int TabWidget::selectedRow()
@@ -120,19 +125,20 @@ int TabWidget::selectedRow()
 void TabWidget::updateClimberInfo()
 {
     int row = selectedRow();
-    emit updateClimberInfo(model->getClimber(row));
+    emit updateClimberInfo(climberModel->getClimber(row));
 }
 
-void TabWidget::commitExpirationDate(QDate date)
+void TabWidget::setPayment(QDate expirationDate, double value)
 {
     int row = selectedRow();
-    Climber *c = model->getClimber(row);
-    if (model->updateExpirationDate(row, date))
+    Climber *c = climberModel->getClimber(row);
+    Payment payment(c->getEmail(), QDate::currentDate(), expirationDate, value);
+    if (climberModel->updateExpirationDate(row, expirationDate) && paymentModel->insertPayment(payment))
     {
         QMessageBox msgBox;
         msgBox.setIcon(QMessageBox::Information);
         msgBox.setText("Pagamento do escalador " + c->getName() + " efetuado com sucesso!\nVencimento \
-na data: " + date.toString("dd/MM/yyyy"));
+na data: " + expirationDate.toString("dd/MM/yyyy") + "\nValor: R$ " + QString::number(value));
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.setDefaultButton(QMessageBox::Ok);
         msgBox.exec();

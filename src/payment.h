@@ -1,38 +1,21 @@
-#pragma once
-
-#include <QDialog>
+#ifndef PAYMENT_H
+#define PAYMENT_H
 #include <QDate>
-#include <QDebug>
-#include <QMessageBox>
-#include <QMainWindow>
 
-#include "climber.h"
-
-namespace Ui {
-class Payment;
-}
-
-class Payment : public QDialog
+class Payment
 {
-    Q_OBJECT
-
-public slots:
-    void updateClimberInfo(Climber *&climber);
+    QString email;
+    QDate paymentDate;
+    QDate expirationDate;
+    double value;
 
 public:
-    explicit Payment(QWidget *parent = 0);
-    ~Payment();
-    
-private slots:
-    void on_buttonBox_accepted();
-    void on_buttonBox_rejected();
-    void on_sliderPayment_sliderMoved(int position);
+    Payment(QString email, QDate paymentDate, QDate expirationDate, double value);
+    inline QString getEmail() {return email;}
+    inline QDate getPaymentDate() {return paymentDate;}
+    inline QDate getExpirationDate() { return expirationDate;}
+    inline double getValue() {return value;}
 
-signals:
-    void setExpirationDate(QDate date);
-
-private:
-    Ui::Payment *ui;
-    QString name;
-    QDate expirationDate;
 };
+
+#endif // PAYMENT_H

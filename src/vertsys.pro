@@ -18,20 +18,24 @@ SOURCES += main.cpp \
     dbmanager.cpp \
     tabwidget.cpp \
     climber.cpp \
-    payment.cpp \
     phonevalidator.cpp \
     emailvalidator.cpp \
-    climbermodel.cpp
+    climbermodel.cpp \
+    paymentmodel.cpp \
+    paymentwindow.cpp \
+    payment.cpp
 
 HEADERS  += mainwindow.h \
     registeruser.h \
     dbmanager.h \
     tabwidget.h \
-    payment.h \
     phonevalidator.h \
     emailvalidator.h \
     climber.h \
-    climbermodel.h
+    climbermodel.h \
+    paymentmodel.h \
+    paymentwindow.h \
+    payment.h
 
 FORMS    += mainwindow.ui \
     registeruser.ui \

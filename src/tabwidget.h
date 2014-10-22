@@ -9,6 +9,7 @@
 #include <QVBoxLayout>
 
 #include "climbermodel.h"
+#include "paymentmodel.h"
 #include "climber.h"
 
 class TabWidget : public QTabWidget
@@ -28,12 +29,13 @@ public slots:
     void updateIdx();
     void toggleActivity();
     void updateClimberInfo();
-    void commitExpirationDate(QDate date);
+    void setPayment(QDate date, double value);
 
 private:
     void setupTabs();
     void setupModel();
-    ClimberModel *model;
+    ClimberModel *climberModel;
+    PaymentModel *paymentModel;
     QTableView *tableView;
     QSortFilterProxyModel *proxyTextModel;
     QSortFilterProxyModel *proxyModel;

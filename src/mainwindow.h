@@ -9,7 +9,7 @@
 #include "registeruser.h"
 //#include "model.h"
 #include "climber.h"
-#include "payment.h"
+#include "paymentwindow.h"
 #include "ui_mainwindow.h"
 
 namespace Ui {
@@ -33,7 +33,7 @@ public slots:
     void insertClimber(Climber *&climber);
     void rowSelected(QModelIndex x, QModelIndex y);
     void recvClimberInfo(Climber *&climber);
-    void setExpirationDate(QDate date);
+//    void setExpirationDate(QDate date);
     void updateActivateOption(int idx);
 
 signals:
@@ -43,12 +43,11 @@ signals:
     void toggleActivity();
     void updateClimberInfo();
     void updateClimberInfo(Climber *&climber);
-    void commitExpirationDate(QDate date);
 
 private:
     Ui::MainWindow *ui;
     RegisterUser *ru;
-    Payment *payment;
+    PaymentWindow *payment;
 
 
 public:

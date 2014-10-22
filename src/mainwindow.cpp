@@ -72,26 +72,21 @@ void MainWindow::on_actionToggleActivity_Climber_triggered()
 
 void MainWindow::on_actionPay_Climber_triggered()
 {
-    payment = new Payment(this);
+    payment = new PaymentWindow(this);
 
     connect(this, SIGNAL(updateClimberInfo(Climber *&)),
             payment, SLOT(updateClimberInfo(Climber *&)), Qt::UniqueConnection);
 
-    connect(payment, SIGNAL(setExpirationDate(QDate)),
-            this, SLOT(setExpirationDate(QDate)), Qt::UniqueConnection);
+    connect(payment, SIGNAL(setPayment(QDate, double)),
+            ui->tabWidget, SLOT(setPayment(QDate, double)), Qt::UniqueConnection);
 
     emit updateClimberInfo();
     payment->show();
-}
 
+}
 void MainWindow::recvClimberInfo(Climber *&climber)
 {
     emit updateClimberInfo(climber);
-}
-
-void MainWindow::setExpirationDate(QDate date)
-{
-    emit commitExpirationDate(date);
 }
 
 void MainWindow::updateActivateOption(int idx)
