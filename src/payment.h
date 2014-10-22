@@ -1,5 +1,5 @@
-#ifndef PAYMENT_H
-#define PAYMENT_H
+#pragma once
+
 #include <QDate>
 
 class Payment
@@ -17,5 +17,3 @@ public:
     inline double getValue() {return value;}
 
 };
-
-#endif // PAYMENT_H

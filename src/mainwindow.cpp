@@ -19,6 +19,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(this, SIGNAL(updateClimberInfo()),
         ui->tabWidget, SLOT(updateClimberInfo()), Qt::UniqueConnection);
+
+    connect(this, SIGNAL(rebootSignal()),
+        this, SLOT(rebootSlot()), Qt::UniqueConnection);
 }
 
 MainWindow::~MainWindow()
@@ -134,6 +137,7 @@ void MainWindow::on_actionImport_triggered()
         msgBox.setText("Banco de dados importado com sucesso!");
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.setDefaultButton(QMessageBox::Ok);
+        emit rebootSignal();
     }
     else
     {
@@ -143,4 +147,9 @@ void MainWindow::on_actionImport_triggered()
         msgBox.setDefaultButton(QMessageBox::Ok);
     }
     msgBox.exec();
+}
+
+void MainWindow::rebootSlot()
+{
+    qApp->exit(MainWindow::EXIT_CODE_REBOOT);
 }

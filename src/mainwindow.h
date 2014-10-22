@@ -27,11 +27,8 @@ private slots:
     void on_lineEdit_search_textChanged(const QString &arg1);
     void on_actionRemove_Climber_triggered();
     void on_actionToggleActivity_Climber_triggered();
-
     void on_actionPay_Climber_triggered();
-
     void on_actionExport_triggered();
-
     void on_actionImport_triggered();
 
 public slots:
@@ -39,6 +36,7 @@ public slots:
     void rowSelected(QModelIndex x, QModelIndex y);
     void recvClimberInfo(Climber *&climber);
     void updateActivateOption(int idx);
+    void rebootSlot();
 
 signals:
     void updateFilter(QString str);
@@ -47,6 +45,8 @@ signals:
     void toggleActivity();
     void updateClimberInfo();
     void updateClimberInfo(Climber *&climber);
+    void restart();
+    void rebootSignal();
 
 private:
     Ui::MainWindow *ui;
@@ -55,5 +55,6 @@ private:
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    static int const EXIT_CODE_REBOOT = -1;
     ~MainWindow();
 };

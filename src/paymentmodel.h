@@ -1,5 +1,4 @@
-#ifndef PAYMENTMODEL_H
-#define PAYMENTMODEL_H
+#pragma once
 
 #include <QSqlTableModel>
 #include <QDate>
@@ -11,5 +10,3 @@ public:
     PaymentModel(QObject *parent);
     bool insertPayment(Payment &payment);
 };
-
-#endif // PAYMENTMODEL_H
