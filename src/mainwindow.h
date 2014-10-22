@@ -36,7 +36,6 @@ public slots:
     void rowSelected(QModelIndex x, QModelIndex y);
     void recvClimberInfo(Climber *&climber);
     void updateActivateOption(int idx);
-    void rebootSlot();
 
 signals:
     void updateFilter(QString str);
@@ -46,7 +45,6 @@ signals:
     void updateClimberInfo();
     void updateClimberInfo(Climber *&climber);
     void restart();
-    void rebootSignal();
 
 private:
     Ui::MainWindow *ui;
