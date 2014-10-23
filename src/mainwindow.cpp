@@ -101,6 +101,8 @@ void MainWindow::updateActivateOption(int idx)
 void MainWindow::on_actionExport_triggered()
 {
     QString DBName = QFileDialog::getSaveFileName(this, tr("Salvar como..."), QString(), tr("DB (*.db)"));
+    if (DBName == NULL)
+        return;
     if (!(DBName.endsWith(".db", Qt::CaseInsensitive)))
             DBName += ".db";
     QMessageBox msgBox;
@@ -124,9 +126,16 @@ void MainWindow::on_actionExport_triggered()
 void MainWindow::on_actionImport_triggered()
 {
     QString DBName = QFileDialog::getOpenFileName(this, tr("Abrir"), QString(), tr("DB (*.db)"));
+    if (DBName == NULL)
+        return;
+    QString DBPath = QDir::currentPath() + "/vertsys.db";
+    if (DBName == DBPath)
+        return;
+
     if (!(DBName.endsWith(".db", Qt::CaseInsensitive)))
             DBName += ".db";
     QMessageBox msgBox;
+
     QFile::remove("vertsys.db");
     if (QFile::copy(DBName, "vertsys.db"))
     {
