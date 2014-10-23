@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 2.8)
+project(VertSys)
+FIND_PACKAGE(Qt4 COMPONENTS QtCore QtGui QtSql REQUIRED)
+
+FILE(GLOB vertsys_SOURCES src/*.cpp)
+FILE(GLOB vertsys_HEADERS src/*.h)
+FILE(GLOB vertsys_FORMS src/*.ui)
+FILE(GLOB vertsys_ICONS src/icons.qrc)
+
+QT4_WRAP_CPP(vertsys_HEADERS_MOC ${vertsys_HEADERS})
+QT4_WRAP_UI(vertsys_FORMS_HEADERS ${vertsys_FORMS})
+QT4_ADD_RESOURCES(vertsys_RESOURCES_RCC ${vertsys_ICONS})
+
+INCLUDE_DIRECTORIES("src")
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
+INCLUDE(${QT_USE_FILE})
+ADD_DEFINITIONS(${QT_DEFINITIONS})
+
+ADD_EXECUTABLE(vertsys ${vertsys_SOURCES} ${vertsys_HEADERS_MOC} ${vertsys_FORMS_HEADERS} ${vertsys_RESOURCES_RCC})
+TARGET_LINK_LIBRARIES(vertsys ${QT_LIBRARIES})
