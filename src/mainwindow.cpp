@@ -136,8 +136,8 @@ void MainWindow::on_actionImport_triggered()
             DBName += ".db";
     QMessageBox msgBox;
 
-    QFile::remove("vertsys.db");
-    if (QFile::copy(DBName, "vertsys.db"))
+    QFile::remove(DBPath);
+    if (QFile::copy(DBName, DBPath))
     {
         msgBox.setIcon(QMessageBox::Information);
         msgBox.setText("Banco de dados importado com sucesso!");
