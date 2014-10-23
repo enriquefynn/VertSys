@@ -17,15 +17,15 @@ QValidator::State PhoneValidator::validate(QString &input, int &pos) const
     }
 
     //Slash
-    QRegExp slash("\\(\\d{2}\\)\\s*\\d{4}");
+    QRegExp slash("\\(\\d{2}\\)\\s{0,1}\\d{5}");
     if (slash.exactMatch(input))
     {
-        input.insert(input.length(), "-");
+        input.insert(input.length()-1, "-");
         pos = input.length();
     }
 
     //Separator
-    QRegExp sep("[\\(]{0,1}[\\d]\{0,2}[\\)]{0,1}\\s*\\d*[\\-]{0,1}\\d*");
+    QRegExp sep("[\\(]{0,1}[\\d]\{0,2}[\\)]{0,1}\\s{0,1}\\d*-{0,1}\\d*");
 
     if (sep.exactMatch(input))
         return QValidator::Acceptable;
