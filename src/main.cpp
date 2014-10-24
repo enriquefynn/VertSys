@@ -14,8 +14,8 @@ int main(int argc, char *argv[])
         a.setWindowIcon(QIcon(":/general/icons/New-climber.png"));
         DBManager db;
         if (!db.openDB())
-            QMessageBox::critical(0, "Base de dados", "Não foi possível conectar ao banco de dados\n"
-                                  "Entre em contato com o desenvolvedor", QMessageBox::Cancel);
+            QMessageBox::critical(0, "Database", "It wasn't possible to connect to database\n\
+Contact the developer!", QMessageBox::Cancel);
         MainWindow w;
         w.show();
         currentExitCode = a.exec();

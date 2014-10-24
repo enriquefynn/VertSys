@@ -17,7 +17,7 @@
    <item>
     <widget class="QGroupBox" name="groupBox_register">
      <property name="title">
-      <string>Cadastro</string>
+      <string>Registration</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
@@ -25,28 +25,28 @@
         <item row="6" column="0">
          <widget class="QLabel" name="label_5">
           <property name="text">
-           <string>Vencimento:</string>
+           <string>Expiration:</string>
           </property>
          </widget>
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="label_3">
           <property name="text">
-           <string>Telefone:</string>
+           <string>Phone:</string>
           </property>
          </widget>
         </item>
         <item row="0" column="0">
          <widget class="QLabel" name="label">
           <property name="text">
-           <string>Nome: </string>
+           <string>Name:</string>
           </property>
          </widget>
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="label_2">
           <property name="text">
-           <string>Endereço: </string>
+           <string>Address:</string>
           </property>
          </widget>
         </item>
@@ -86,7 +86,7 @@
         <item row="5" column="0">
          <widget class="QLabel" name="label_6">
           <property name="text">
-           <string>Início:</string>
+           <string>Beginning:</string>
           </property>
          </widget>
         </item>
@@ -104,12 +104,12 @@
          <widget class="QComboBox" name="comboBox">
           <item>
            <property name="text">
-            <string>Mensalista</string>
+            <string>Mensalist</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>Diario</string>
+            <string>Daily</string>
            </property>
           </item>
          </widget>
@@ -117,14 +117,14 @@
         <item row="8" column="0">
          <widget class="QLabel" name="label_7">
           <property name="text">
-           <string>Atividade:</string>
+           <string>Activity:</string>
           </property>
          </widget>
         </item>
         <item row="4" column="0">
          <widget class="QLabel" name="label_8">
           <property name="text">
-           <string>Observações:</string>
+           <string>Observations:</string>
           </property>
          </widget>
         </item>

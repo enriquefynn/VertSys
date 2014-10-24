@@ -42,7 +42,7 @@ void RegisterUser::accept()
     {
         QMessageBox msgBox;
         msgBox.setIcon(QMessageBox::Critical);
-        msgBox.setText("Email invalido!");
+        msgBox.setText(tr("Invalid email!"));
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.setDefaultButton(QMessageBox::Ok);
         msgBox.exec();
@@ -55,7 +55,7 @@ void RegisterUser::accept()
         {
             QMessageBox msgBox;
             msgBox.setIcon(QMessageBox::Critical);
-            msgBox.setText("Telefone invalido!");
+            msgBox.setText(tr("Invalid phone!"));
             msgBox.setStandardButtons(QMessageBox::Ok);
             msgBox.setDefaultButton(QMessageBox::Ok);
             msgBox.exec();

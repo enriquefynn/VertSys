@@ -68,10 +68,11 @@
    </widget>
    <widget class="QMenu" name="menuEscalador">
     <property name="title">
-     <string>Escalador</string>
+     <string>Climber</string>
     </property>
     <addaction name="actionRemove_Climber"/>
     <addaction name="actionToggleActivity_Climber"/>
+    <addaction name="separator"/>
     <addaction name="actionPay_Climber"/>
    </widget>
    <widget class="QMenu" name="menuEmail">
@@ -107,7 +108,7 @@
      <normaloff>:/general/icons/New-climber.png</normaloff>:/general/icons/New-climber.png</iconset>
    </property>
    <property name="text">
-    <string>Novo Escalador</string>
+    <string>New Climber</string>
    </property>
   </action>
   <action name="actionRemove_Climber">
@@ -119,12 +120,12 @@
      <normaloff>:/general/icons/Rem-climber.png</normaloff>:/general/icons/Rem-climber.png</iconset>
    </property>
    <property name="text">
-    <string>Remover</string>
+    <string>Remove</string>
    </property>
   </action>
   <action name="actionToggleActivity_Climber">
    <property name="text">
-    <string>Inativar</string>
+    <string>Deactivate</string>
    </property>
   </action>
   <action name="actionPay_Climber">
@@ -133,22 +134,22 @@
      <normaloff>:/general/icons/paying.png</normaloff>:/general/icons/paying.png</iconset>
    </property>
    <property name="text">
-    <string>Pagar</string>
+    <string>Pay</string>
    </property>
   </action>
   <action name="actionClose">
    <property name="text">
-    <string>Fechar</string>
+    <string>Close</string>
    </property>
   </action>
   <action name="actionExport">
    <property name="text">
-    <string>Exportar...</string>
+    <string>Export...</string>
    </property>
   </action>
   <action name="actionImport">
    <property name="text">
-    <string>Importar...</string>
+    <string>Import...</string>
    </property>
   </action>
  </widget>

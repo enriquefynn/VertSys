@@ -46,7 +46,7 @@ void MainWindow::on_actionRemove_Climber_triggered()
 {
     QMessageBox msgBox;
     msgBox.setIcon(QMessageBox::Critical);
-    msgBox.setText("Deseja realmente apagar o escalador?");
+    msgBox.setText(tr("Really delete the climber?"));
     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     msgBox.setDefaultButton(QMessageBox::No);
     if(msgBox.exec() == QMessageBox::Yes)
@@ -91,16 +91,16 @@ void MainWindow::updateActivateOption(int idx)
 {
     ui->actionToggleActivity_Climber->setEnabled(true);
     if (idx == 0)
-        ui->actionToggleActivity_Climber->setText(tr("Inativar"));
+        ui->actionToggleActivity_Climber->setText(tr("Deactivate"));
     else if (idx == 1)
         ui->actionToggleActivity_Climber->setEnabled(false);
     else
-        ui->actionToggleActivity_Climber->setText(tr("Ativar"));
+        ui->actionToggleActivity_Climber->setText(tr("Activate"));
 }
 
 void MainWindow::on_actionExport_triggered()
 {
-    QString DBName = QFileDialog::getSaveFileName(this, tr("Salvar como..."), QString(), tr("DB (*.db)"));
+    QString DBName = QFileDialog::getSaveFileName(this, tr("Save as..."), QString(), "DB (*.db)");
     if (DBName == NULL)
         return;
     if (!(DBName.endsWith(".db", Qt::CaseInsensitive)))
@@ -109,14 +109,14 @@ void MainWindow::on_actionExport_triggered()
     if (QFile::copy("vertsys.db", DBName))
     {
         msgBox.setIcon(QMessageBox::Information);
-        msgBox.setText("Banco de dados exportado com sucesso!");
+        msgBox.setText(tr("Database exported successfully!"));
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.setDefaultButton(QMessageBox::Ok);
     }
     else
     {
         msgBox.setIcon(QMessageBox::Critical);
-        msgBox.setText("Nao foi possivel exportar o banco de dados!");
+        msgBox.setText("Error while exporting database!");
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.setDefaultButton(QMessageBox::Ok);
     }
@@ -125,7 +125,7 @@ void MainWindow::on_actionExport_triggered()
 
 void MainWindow::on_actionImport_triggered()
 {
-    QString DBName = QFileDialog::getOpenFileName(this, tr("Abrir"), QString(), tr("DB (*.db)"));
+    QString DBName = QFileDialog::getOpenFileName(this, tr("Open"), QString(), "DB (*.db)");
     if (DBName == NULL)
         return;
     QString DBPath = QDir::currentPath() + "/vertsys.db";
@@ -140,7 +140,7 @@ void MainWindow::on_actionImport_triggered()
     if (QFile::copy(DBName, DBPath))
     {
         msgBox.setIcon(QMessageBox::Information);
-        msgBox.setText("Banco de dados importado com sucesso!");
+        msgBox.setText(tr("Database imported successfully!"));
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.setDefaultButton(QMessageBox::Ok);
         qApp->exit(MainWindow::EXIT_CODE_REBOOT);
@@ -148,7 +148,7 @@ void MainWindow::on_actionImport_triggered()
     else
     {
         msgBox.setIcon(QMessageBox::Critical);
-        msgBox.setText("Nao foi possivel importar o banco de dados!");
+        msgBox.setText(tr("Error while importing database!"));
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.setDefaultButton(QMessageBox::Ok);
     }
