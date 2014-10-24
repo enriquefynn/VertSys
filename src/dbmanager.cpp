@@ -37,7 +37,7 @@ bool DBManager::openDB()
         if (db.record("climber").indexOf("observations") == -1)
         {
             qDebug() << "Updating to DB v2" << endl;
-            query.exec("ALTER TABLE climber ADD COLUMN observations TEXT");
+            query.exec("ALTER TABLE climber ADD observations TEXT");
         }
     }
     return status;
