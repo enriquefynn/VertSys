@@ -12,7 +12,7 @@ ClimberModel::ClimberModel(QObject *parent) :
 
 QVariant ClimberModel::data(const QModelIndex &index, int role) const
 {
-    if (index.column() == 4)
+    if (index.column() == VertSys::expirationDate)
     {
         QDate value = QDate::fromString(QSqlQueryModel::data(index, Qt::DisplayRole).toString(), "yyyy-MM-dd");
         switch(role)
@@ -45,6 +45,8 @@ bool ClimberModel::insertClimber(Climber *&climber)
     rec.setValue("expirationDate", climber->getExpirationDate());
     rec.setValue("startDate", climber->getStartDate());
     rec.setValue("status", climber->getStatus());
+    rec.setValue("observations", climber->getObservations());
+
     bool ret = insertRecord(-1, rec);
     submitAll();
     return ret;
@@ -59,30 +61,32 @@ bool ClimberModel::removeClimber(int row)
 
 void ClimberModel::toggleActivity(int row)
 {
-    if (index(row, 6).data() == "D")
-        setData(index(row, 6), "A");
+    if (index(row, VertSys::status).data() == "D")
+        setData(index(row, VertSys::status), "A");
     else
-        setData(index(row, 6), "D");
+        setData(index(row, VertSys::status), "D");
     submitAll();
 }
 
 bool ClimberModel::updateExpirationDate(int row, QDate date)
 {
-    return setData(index(row, 4), date);
+    return setData(index(row, VertSys::expirationDate), date);
 }
 
 Climber *& ClimberModel::getClimber(int row)
 {
-    QString name, phone, address, email, status;
+    QString name, phone, address, email, status, observations;
     QDate expirationDate, startDate;
 
-    name = index(row, 0).data().toString();
-    phone = index(row, 1).data().toString();
-    address = index(row, 2).data().toString();
-    email = index(row, 3).data().toString();
-    expirationDate = index(row, 4).data().toDate();
-    startDate = index(row, 5).data().toDate();
-    status = index(row, 6).data().toString();
-    c = new Climber(name, phone, address, email, expirationDate, startDate, status);
+    name = index(row, VertSys::name).data().toString();
+    phone = index(row, VertSys::phone).data().toString();
+    address = index(row, VertSys::address).data().toString();
+    email = index(row, VertSys::email).data().toString();
+    expirationDate = index(row, VertSys::expirationDate).data().toDate();
+    startDate = index(row, VertSys::startDate).data().toDate();
+    status = index(row, VertSys::status).data().toString();
+    observations = index(row, VertSys::observations).data().toString();
+
+    c = new Climber(name, phone, address, email, expirationDate, startDate, status, observations);
     return c;
 }

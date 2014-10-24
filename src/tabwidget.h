@@ -11,6 +11,7 @@
 #include "climbermodel.h"
 #include "paymentmodel.h"
 #include "climber.h"
+#include "vertsys.h"
 
 class TabWidget : public QTabWidget
 {

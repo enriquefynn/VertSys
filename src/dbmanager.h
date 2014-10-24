@@ -5,6 +5,7 @@
 #include <QSqlQuery>
 #include <QtDebug>
 #include <QFileInfo>
+#include <QSqlRecord>
 
 class DBManager
 {

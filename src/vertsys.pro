@@ -35,7 +35,8 @@ HEADERS  += mainwindow.h \
     climbermodel.h \
     paymentmodel.h \
     paymentwindow.h \
-    payment.h
+    payment.h \
+    vertsys.h
 
 FORMS    += mainwindow.ui \
     registeruser.ui \

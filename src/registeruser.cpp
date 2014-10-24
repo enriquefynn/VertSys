@@ -34,7 +34,7 @@ void RegisterUser::on_buttonBox_rejected()
 
 void RegisterUser::accept()
 {
-    QString name, phone, address, email, status;
+    QString name, phone, address, email, status, observations;
     QDate expirationDate, startDate;
     email = ui->lineEdit_Email->text();
     //Validate Email
@@ -63,8 +63,9 @@ void RegisterUser::accept()
         else
         {
             name = ui->lineEdit_Name->text();
-
             address = ui->lineEdit_Addr->text();
+            observations = ui->observationsTextEdit->toPlainText();
+
             expirationDate = ui->dateEdit->date();
             startDate = ui->dateEdit_Start->date();
             int comboIdx = ui->comboBox->currentIndex();
@@ -72,7 +73,7 @@ void RegisterUser::accept()
                 status = "A";
             else
                 status = "D";
-            Climber *c = new Climber(name, phone, address, email, expirationDate, startDate, status);
+            Climber *c = new Climber(name, phone, address, email, expirationDate, startDate, status, observations);
             emit insertClimber(c);
             delete this;
         }

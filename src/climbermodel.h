@@ -4,6 +4,7 @@
 #include <QDate>
 
 #include "climber.h"
+#include "vertsys.h"
 
 class ClimberModel : public QSqlTableModel
 {

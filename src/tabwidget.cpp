@@ -22,10 +22,10 @@ void TabWidget::setupModel()
     climberModel = new ClimberModel(this);
     climberModel->setTable("climber");
     climberModel->select();
-    climberModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Nome"));
-    climberModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Telefone"));
-    climberModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Email"));
-    climberModel->setHeaderData(4, Qt::Horizontal, QObject::tr("Vencimento"));
+    climberModel->setHeaderData(VertSys::name, Qt::Horizontal, QObject::tr("Nome"));
+    climberModel->setHeaderData(VertSys::phone, Qt::Horizontal, QObject::tr("Telefone"));
+    climberModel->setHeaderData(VertSys::email, Qt::Horizontal, QObject::tr("Email"));
+    climberModel->setHeaderData(VertSys::expirationDate, Qt::Horizontal, QObject::tr("Vencimento"));
     proxyTextModel = new QSortFilterProxyModel(this);
     proxyTextModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     proxyTextModel->setSourceModel(climberModel);
@@ -58,12 +58,11 @@ void TabWidget::setupTabs()
         tableView->verticalHeader()->hide();
         tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tableView->setSelectionMode(QAbstractItemView::SingleSelection);
-        //Date_Start
-        tableView->hideColumn(5);
-        //Status
-        tableView->hideColumn(6);
-        //Address
-        tableView->hideColumn(2);
+
+        tableView->hideColumn(VertSys::startDate);
+        tableView->hideColumn(VertSys::status);
+        tableView->hideColumn(VertSys::address);
+        tableView->hideColumn(VertSys::observations);
 
         //Connect the select to disable buttons
         QItemSelectionModel *sm = tableView->selectionModel();
@@ -71,8 +70,8 @@ void TabWidget::setupTabs()
                 parentWidget()->parentWidget(), SLOT(rowSelected(QModelIndex,QModelIndex)), Qt::UniqueConnection);
 
         proxyModel->setFilterRegExp(QRegExp(charNames[i], Qt::CaseInsensitive));
-        proxyModel->setFilterKeyColumn(6);
-        proxyModel->sort(4, Qt::AscendingOrder);
+        proxyModel->setFilterKeyColumn(VertSys::status);
+        proxyModel->sort(VertSys::expirationDate, Qt::AscendingOrder);
         addTab(tableView, str);
     }
 }
