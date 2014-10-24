@@ -38,6 +38,8 @@ HEADERS  += mainwindow.h \
     payment.h \
     vertsys.h
 
+TRANSLATIONS += vertSys_pt.ts
+
 FORMS    += mainwindow.ui \
     registeruser.ui \
     payment.ui

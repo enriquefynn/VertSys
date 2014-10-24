@@ -1,6 +1,7 @@
 #include <QApplication>
 #include <QTableView>
 #include <QMessageBox>
+#include <QTranslator>
 
 #include "mainwindow.h"
 #include "dbmanager.h"
@@ -11,6 +12,16 @@ int main(int argc, char *argv[])
     do
     {
         QApplication a(argc, argv);
+
+        QTranslator qtTranslator;
+        qtTranslator.load("qt_" + QLocale::system().name(),
+        QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+        a.installTranslator(&qtTranslator);
+
+        QTranslator vertSysTranslator;
+        vertSysTranslator.load("vertsys_" + QLocale::system().name());
+        a.installTranslator(&vertSysTranslator);
+
         a.setWindowIcon(QIcon(":/general/icons/New-climber.png"));
         DBManager db;
         if (!db.openDB())

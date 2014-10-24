@@ -136,8 +136,8 @@ void TabWidget::setPayment(QDate expirationDate, double value)
     {
         QMessageBox msgBox;
         msgBox.setIcon(QMessageBox::Information);
-        msgBox.setText(tr("Payment for climber ") + c->getName() + tr(" successful!\nExpiration \
-in: ") + expirationDate.toString("dd/MM/yyyy") + tr("\nAmount): R$ ") + QString::number(value));
+        msgBox.setText(tr("Payment for climber ") + c->getName() + tr(" successful!") + "\n" +
+        tr("Expiration in: ") + expirationDate.toString(tr("MM/dd/yyyy")) + tr("\nAmount: $") + QString::number(value));
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.setDefaultButton(QMessageBox::Ok);
         msgBox.exec();
