@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
         a.installTranslator(&qtTranslator);
 
         QTranslator vertSysTranslator;
-        vertSysTranslator.load("vertsys_" + QLocale::system().name());
+        vertSysTranslator.load("vertSys_" + QLocale::system().name());
         a.installTranslator(&vertSysTranslator);
 
         a.setWindowIcon(QIcon(":/general/icons/New-climber.png"));
