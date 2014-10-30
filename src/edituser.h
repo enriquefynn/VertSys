@@ -9,31 +9,28 @@
 #include "emailvalidator.h"
 
 namespace Ui {
-class RegisterUser;
+class EditUser;
 }
 
-class RegisterUser : public QDialog
+
+class EditUser : public QDialog
 {
     Q_OBJECT
-
 public:
-    explicit RegisterUser(QWidget *parent = 0);
-    ~RegisterUser();
+    explicit EditUser(int row, Climber *&climber, QWidget *parent = 0);
+    ~EditUser();
+signals:
+    void editClimber(int, Climber*&);
+
+public slots:
 
 private slots:
     void on_buttonBox_rejected();
-
     void on_buttonBox_accepted();
 
-public slots:
-    void editaccept();
-
-signals:
-    void insertClimber(Climber *&climber);
-    void editsave();
-
 private:
-    Ui::RegisterUser *ui;
+    Ui::EditUser *ui;
     const PhoneValidator *phoneValidator;
     const EmailValidator *emailValidator;
+    int rowEdited;
 };

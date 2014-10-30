@@ -23,7 +23,9 @@ SOURCES += main.cpp \
     climbermodel.cpp \
     paymentmodel.cpp \
     paymentwindow.cpp \
-    payment.cpp
+    payment.cpp \
+    buttonbox.cpp \
+    edituser.cpp
 
 HEADERS  += mainwindow.h \
     registeruser.h \
@@ -36,11 +38,14 @@ HEADERS  += mainwindow.h \
     paymentmodel.h \
     paymentwindow.h \
     payment.h \
-    vertsys.h
+    vertsys.h \
+    buttonbox.h \
+    edituser.h
 
 FORMS    += mainwindow.ui \
     registeruser.ui \
-    payment.ui
+    payment.ui \
+    edituser.ui
 
 RESOURCES += \
     icons.qrc

@@ -1,6 +1,7 @@
 #include "tabwidget.h"
 #include "mainwindow.h"
 #include "payment.h"
+#include "registeruser.h"
 
 TabWidget::TabWidget(QWidget *parent) :
     QTabWidget(parent)
@@ -12,6 +13,12 @@ TabWidget::TabWidget(QWidget *parent) :
 
     connect(this, SIGNAL(updateClimberInfo(Climber*&)),
             static_cast<QMainWindow*>(parent->parent()), SLOT(recvClimberInfo(Climber*&)), Qt::UniqueConnection);
+
+    connect(currentWidget(),SIGNAL(doubleClicked(const QModelIndex&)),
+            this, SLOT(editClimber(const QModelIndex&)), Qt::UniqueConnection);
+
+    connect(this, SIGNAL(editClimberWindow(int, Climber*)),
+            static_cast<QMainWindow*>(parent->parent()), SLOT(displayClimberInfo(int, Climber*)), Qt::UniqueConnection);
 
     connect(this, SIGNAL(updateActivateOption(int)),
             static_cast<QMainWindow*>(parent->parent()), SLOT(updateActivateOption(int)), Qt::UniqueConnection);
@@ -94,12 +101,30 @@ void TabWidget::removeClimber()
     climberModel->removeClimber(row);
 }
 
+void TabWidget::editClimber(const QModelIndex& index)
+{
+    Q_UNUSED(index);
+
+    int row = selectedRow();
+    emit editClimberWindow(row, climberModel->getClimber(row));
+}
+
+void TabWidget::editClimberInDB(int row, Climber *&climber)
+{
+    qDebug() << "EDITED: " << climber->getName() << " " << row;
+    climberModel->editClimber(row, climber);
+}
+
 //FIXME: Not really working
 void TabWidget::updateIdx()
 {
     QTableView *temp = static_cast<QTableView*>(currentWidget());
     emit updateActivateOption(currentIndex());
     temp->setCurrentIndex(QModelIndex());
+
+    // Connect each tab with editClimber
+    connect(currentWidget(),SIGNAL(doubleClicked(const QModelIndex&)),
+            this, SLOT(editClimber(const QModelIndex&)), Qt::UniqueConnection);
 }
 
 void TabWidget::toggleActivity()

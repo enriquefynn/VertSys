@@ -8,7 +8,7 @@
 #include <QFileDialog>
 
 #include "registeruser.h"
-//#include "model.h"
+#include "edituser.h"
 #include "climber.h"
 #include "paymentwindow.h"
 #include "ui_mainwindow.h"
@@ -33,13 +33,16 @@ private slots:
 
 public slots:
     void insertClimber(Climber *&climber);
+    void editClimber(int row, Climber *&climber);
     void rowSelected(QModelIndex x, QModelIndex y);
     void recvClimberInfo(Climber *&climber);
     void updateActivateOption(int idx);
+    void displayClimberInfo(int, Climber*);
 
 signals:
     void updateFilter(QString str);
     void insertClimberInDB(Climber *&climber);
+    void editClimberInDB(int row, Climber *&climber);
     void removeClimber();
     void toggleActivity();
     void updateClimberInfo();
@@ -49,6 +52,7 @@ signals:
 private:
     Ui::MainWindow *ui;
     RegisterUser *ru;
+    EditUser *eu;
     PaymentWindow *payment;
 
 public:

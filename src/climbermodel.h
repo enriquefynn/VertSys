@@ -14,6 +14,7 @@ public:
     QVariant data(const QModelIndex &index, int role) const;
     bool insertClimber(Climber *&climber);
     bool removeClimber(int row);
+    void editClimber(int row, Climber *&climber);
     void toggleActivity(int row);
     Climber *& getClimber(int row);
     bool updateExpirationDate(int row, QDate date);
