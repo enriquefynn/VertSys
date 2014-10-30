@@ -24,7 +24,6 @@ SOURCES += main.cpp \
     paymentmodel.cpp \
     paymentwindow.cpp \
     payment.cpp \
-    buttonbox.cpp \
     edituser.cpp
 
 HEADERS  += mainwindow.h \
@@ -39,7 +38,6 @@ HEADERS  += mainwindow.h \
     paymentwindow.h \
     payment.h \
     vertsys.h \
-    buttonbox.h \
     edituser.h
 
 FORMS    += mainwindow.ui \
