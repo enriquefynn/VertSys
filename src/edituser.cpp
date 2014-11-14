@@ -46,6 +46,7 @@ void EditUser::on_buttonBox_rejected()
 }
 
 //FIXME: Set modified fields only
+//FIXME: Don't repeat yourself
 void EditUser::on_buttonBox_accepted()
 {
     QString name, phone, address, email, status, observations;

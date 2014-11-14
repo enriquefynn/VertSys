@@ -32,7 +32,7 @@ void RegisterUser::on_buttonBox_rejected()
     delete this;
 }
 
-// FIXME: Don't repeat yourself
+
 void RegisterUser::on_buttonBox_accepted()
 {
     QString name, phone, address, email, status, observations;

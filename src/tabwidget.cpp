@@ -142,7 +142,7 @@ int TabWidget::selectedRow()
     QModelIndex idx;
     int row;
     foreach (idx, indexes)
-        row = proxy->mapToSource(idx).row();
+        row = proxyTextModel->mapToSource(proxy->mapToSource(idx)).row();
     return row;
 }
 
