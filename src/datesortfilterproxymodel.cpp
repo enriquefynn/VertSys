@@ -1,8 +1,6 @@
 #include "datesortfilterproxymodel.h"
 #include "payment.h"
 
-#include <QtDebug>
-
 DateSortFilterProxyModel::DateSortFilterProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
 {
