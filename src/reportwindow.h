@@ -27,6 +27,7 @@ private slots:
     void dateFilterChanged();
     void on_StartDateEdit_dateChanged(const QDate &date);
     void on_EndDateEdit_dateChanged(const QDate &date);
+    void exportCSV();
 
 private:
     Ui::Report *ui;

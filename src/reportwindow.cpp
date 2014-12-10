@@ -1,9 +1,10 @@
-#include <QtDebug>
 #include "reportwindow.h"
 #include "ui_report.h"
 
-#include <QSqlQuery>
 #include <QSqlRelation>
+#include <QTextStream>
+#include <QFile>
+#include <QFileDialog>
 
 ReportWindow::ReportWindow(QWidget *parent) :
     QDialog(parent),
@@ -52,15 +53,16 @@ void ReportWindow::on_buttonBox_rejected()
 
 void ReportWindow::on_buttonBox_accepted()
 {
-
+    exportCSV();
+    this->close();
 }
 
 double ReportWindow::sumPayments()
 {
     double sum = 0;
-    for(int i = 0; i < proxyPaymentModel->rowCount(); ++i)
+    for(int r = 0; r < proxyPaymentModel->rowCount(); ++r)
     {
-        QModelIndex idx = proxyPaymentModel->index(i, PaymentFields::value);
+        QModelIndex idx = proxyPaymentModel->index(r, PaymentFields::value);
         sum += proxyPaymentModel->data(idx).toDouble();
     }
     return sum;
@@ -81,4 +83,29 @@ void ReportWindow::on_StartDateEdit_dateChanged(const QDate &date)
 void ReportWindow::on_EndDateEdit_dateChanged(const QDate &date)
 {
     emit dateChanged(date);
+}
+
+void ReportWindow::exportCSV()
+{
+    QString defaultFileName = QString("RelatorioPagamentos-%1_a_%2.csv").arg(proxyPaymentModel->filterMinimumDate().toString("dd.MM.yyyy"))
+                                                                        .arg(proxyPaymentModel->filterMaximumDate().toString("dd.MM.yyyy"));
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"), defaultFileName, tr("Text CSV (*.csv)"));
+
+    QFile file(fileName);
+    if (file.open(QFile::WriteOnly | QFile::Truncate))
+    {
+        QTextStream data(&file);
+        QStringList strList;
+        data << "Nome;Pago em;Expira em;Valor\n";
+        for( int r = 0; r < proxyPaymentModel->rowCount(); ++r )
+        {
+            strList.clear();
+            for( int c = 1; c < proxyPaymentModel->columnCount(); ++c )
+            {
+                strList << "\"" + proxyPaymentModel->index(r, c).data().toString() +  "\"";
+            }
+            data << strList.join(";")+"\n";
+        }
+        file.close();
+    }
 }

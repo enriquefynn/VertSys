@@ -10,11 +10,11 @@ Current Features:
 * Add/Remove Climber.
 * Pay.
 * Import/Export database.
+* Edit Climbers.
+* Reports.
 
 TODO:
 
-* Edit Climbers.
-* Reports.
 * Translation
 
 Example:
