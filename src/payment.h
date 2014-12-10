@@ -2,6 +2,15 @@
 
 #include <QDate>
 
+namespace PaymentFields
+{
+    const int email = 1;
+    const int paymentDate = 2;
+    const int expirationDate = 3;
+    const int value = 4;
+}
+
+
 class Payment
 {
     QString email;

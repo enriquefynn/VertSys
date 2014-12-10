@@ -1,8 +1,9 @@
 #include <QSqlRecord>
+#include <QSqlTableModel>
 #include "paymentmodel.h"
 
 PaymentModel::PaymentModel(QObject *parent) :
-    QSqlTableModel(parent)
+    QSqlRelationalTableModel(parent)
 {
     setEditStrategy(QSqlTableModel::OnRowChange);
 }

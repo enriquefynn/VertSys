@@ -24,7 +24,9 @@ SOURCES += main.cpp \
     paymentmodel.cpp \
     paymentwindow.cpp \
     payment.cpp \
-    edituser.cpp
+    edituser.cpp \
+    reportwindow.cpp \
+    datesortfilterproxymodel.cpp
 
 HEADERS  += mainwindow.h \
     registeruser.h \
@@ -38,12 +40,17 @@ HEADERS  += mainwindow.h \
     paymentwindow.h \
     payment.h \
     vertsys.h \
-    edituser.h
+    edituser.h \
+    reportwindow.h \
+    datesortfilterproxymodel.h
 
 FORMS    += mainwindow.ui \
     registeruser.ui \
     payment.ui \
-    edituser.ui
+    edituser.ui \
+    report.ui
 
 RESOURCES += \
     icons.qrc
+
+OTHER_FILES +=

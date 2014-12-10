@@ -11,6 +11,7 @@
 #include "edituser.h"
 #include "climber.h"
 #include "paymentwindow.h"
+#include "reportwindow.h"
 #include "ui_mainwindow.h"
 
 namespace Ui {
@@ -30,6 +31,8 @@ private slots:
     void on_actionPay_Climber_triggered();
     void on_actionExport_triggered();
     void on_actionImport_triggered();
+
+    void on_actionMake_Report_triggered();
 
 public slots:
     void insertClimber(Climber *&climber);
@@ -54,6 +57,7 @@ private:
     RegisterUser *ru;
     EditUser *eu;
     PaymentWindow *payment;
+    ReportWindow *report;
 
 public:
     explicit MainWindow(QWidget *parent = 0);

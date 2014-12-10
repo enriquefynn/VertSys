@@ -2,6 +2,7 @@
 #include <QtDebug>
 #include <QSqlRecord>
 #include <QTimer>
+
 #include "climbermodel.h"
 
 ClimberModel::ClimberModel(QObject *parent) :

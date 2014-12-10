@@ -93,7 +93,6 @@ void MainWindow::on_actionPay_Climber_triggered()
 
     emit updateClimberInfo();
     payment->show();
-
 }
 
 void MainWindow::recvClimberInfo(Climber *&climber)
@@ -167,4 +166,10 @@ void MainWindow::on_actionImport_triggered()
         msgBox.setDefaultButton(QMessageBox::Ok);
     }
     msgBox.exec();
+}
+
+void MainWindow::on_actionMake_Report_triggered()
+{
+    report = new ReportWindow(this);
+    report->show();
 }

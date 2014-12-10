@@ -19,7 +19,7 @@ class TabWidget : public QTabWidget
     Q_OBJECT
 public:
     explicit TabWidget(QWidget *parent = 0);
-    
+
 signals:
     void updateClimberInfo(Climber *&climber);
     void updateActivateOption(int);

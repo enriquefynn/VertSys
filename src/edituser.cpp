@@ -2,6 +2,9 @@
 #include "ui_edituser.h"
 #include "mainwindow.h"
 
+
+// FIXME: Don't repeat yourself
+// Reuse registeruser.ui and handle signals of creation and editing climbers
 EditUser::EditUser(int row, Climber*& climber, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::EditUser)

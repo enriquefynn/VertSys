@@ -33,10 +33,10 @@ void TabWidget::setupModel()
     climberModel->setHeaderData(VertSys::phone, Qt::Horizontal, QObject::tr("Telefone"));
     climberModel->setHeaderData(VertSys::email, Qt::Horizontal, QObject::tr("Email"));
     climberModel->setHeaderData(VertSys::expirationDate, Qt::Horizontal, QObject::tr("Vencimento"));
+
     proxyTextModel = new QSortFilterProxyModel(this);
     proxyTextModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     proxyTextModel->setSourceModel(climberModel);
-
 
     paymentModel = new PaymentModel(this);
     paymentModel->setTable("payment");
@@ -61,7 +61,9 @@ void TabWidget::setupTabs()
         tableView->setModel(proxyModel);
         tableView->setSortingEnabled(true);
         tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
-        //tableView->horizontalHeader()->setStretchLastSection(true);
+        tableView->horizontalHeader()->setStretchLastSection(true);
+        tableView->setAlternatingRowColors(true);
+        tableView->setSortingEnabled(true);
         tableView->verticalHeader()->hide();
         tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tableView->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -91,8 +93,11 @@ void TabWidget::updateFilter(QString str)
 void TabWidget::insertClimberInDB(Climber *&climber)
 {
     qDebug() << "INSERTED: " << climber->getName();
-    climberModel->insertClimber(climber);
-    updateIdx();
+    bool ret = climberModel->insertClimber(climber);
+    if(ret)
+        updateIdx();
+    else
+        qDebug() << climberModel->lastError().text();
 }
 
 void TabWidget::removeClimber()
