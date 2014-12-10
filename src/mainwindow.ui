@@ -155,7 +155,7 @@
   <action name="actionMake_Report">
    <property name="icon">
     <iconset>
-     <normaloff>../../report.png</normaloff>../../report.png</iconset>
+     <normaloff>icons/report.png</normaloff>icons/report.png</iconset>
    </property>
    <property name="text">
     <string>Gerar Relatorio</string>
