@@ -16,6 +16,10 @@ Current Features:
 TODO:
 
 * Translation
+* Improve payment method
+* Account manager
+* Reuse register code to edit climbers
+* Make a instaler
 
 Example:
 ![example](example.png "Program example")
