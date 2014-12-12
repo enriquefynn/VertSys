@@ -26,7 +26,8 @@ SOURCES += main.cpp \
     payment.cpp \
     edituser.cpp \
     reportwindow.cpp \
-    datesortfilterproxymodel.cpp
+    datesortfilterproxymodel.cpp \
+    dateformatdelegate.cpp
 
 HEADERS  += mainwindow.h \
     registeruser.h \
@@ -42,7 +43,8 @@ HEADERS  += mainwindow.h \
     vertsys.h \
     edituser.h \
     reportwindow.h \
-    datesortfilterproxymodel.h
+    datesortfilterproxymodel.h \
+    dateformatdelegate.h
 
 FORMS    += mainwindow.ui \
     registeruser.ui \

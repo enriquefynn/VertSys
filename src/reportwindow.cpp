@@ -1,5 +1,6 @@
 #include "reportwindow.h"
 #include "ui_report.h"
+#include "dateformatdelegate.h"
 
 #include <QSqlRelation>
 #include <QTextStream>
@@ -12,7 +13,9 @@ ReportWindow::ReportWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->StartDateEdit->setDate(QDate::currentDate());
+    QDate current = QDate::currentDate();
+    QDate firstDay = QDate(current.year(), current.month(), 1);
+    ui->StartDateEdit->setDate(firstDay);
     ui->EndDateEdit->setDate(ui->StartDateEdit->date().addMonths(1));
 
     paymentModel = new PaymentModel(this);
@@ -36,9 +39,13 @@ ReportWindow::ReportWindow(QWidget *parent) :
     ui->tableViewFilteredContent->setAlternatingRowColors(true);
     ui->tableViewFilteredContent->setSortingEnabled(true);
     ui->tableViewFilteredContent->sortByColumn(PaymentFields::paymentDate, Qt::AscendingOrder);
+    ui->tableViewFilteredContent->setItemDelegateForColumn(PaymentFields::paymentDate, new DateFormatDelegate(this, "dd/MM/yyyy"));
+    ui->tableViewFilteredContent->setItemDelegateForColumn(PaymentFields::expirationDate, new DateFormatDelegate(this, "dd/MM/yyyy"));
 
     connect(this, SIGNAL(dateChanged(QDate)),
             this, SLOT(dateFilterChanged()));
+
+     emit dateChanged(firstDay);
 }
 
 ReportWindow::~ReportWindow()
