@@ -42,11 +42,7 @@
      </layout>
     </item>
     <item>
-     <widget class="TabWidget" name="tabWidget">
-      <property name="locale">
-       <locale language="Portuguese" country="Brazil"/>
-      </property>
-     </widget>
+     <widget class="TabWidget" name="tabWidget"/>
     </item>
    </layout>
   </widget>

@@ -39,13 +39,13 @@ ReportWindow::ReportWindow(QWidget *parent) :
     ui->tableViewFilteredContent->setAlternatingRowColors(true);
     ui->tableViewFilteredContent->setSortingEnabled(true);
     ui->tableViewFilteredContent->sortByColumn(PaymentFields::paymentDate, Qt::AscendingOrder);
-    ui->tableViewFilteredContent->setItemDelegateForColumn(PaymentFields::paymentDate, new DateFormatDelegate(this, "dd/MM/yyyy"));
-    ui->tableViewFilteredContent->setItemDelegateForColumn(PaymentFields::expirationDate, new DateFormatDelegate(this, "dd/MM/yyyy"));
+    ui->tableViewFilteredContent->setItemDelegateForColumn(PaymentFields::paymentDate, new DateFormatDelegate(this));
+    ui->tableViewFilteredContent->setItemDelegateForColumn(PaymentFields::expirationDate, new DateFormatDelegate(this));
 
     connect(this, SIGNAL(dateChanged(QDate)),
             this, SLOT(dateFilterChanged()));
 
-     emit dateChanged(firstDay);
+    emit dateChanged(firstDay);
 }
 
 ReportWindow::~ReportWindow()
