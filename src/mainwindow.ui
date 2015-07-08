@@ -78,6 +78,7 @@
     <property name="title">
      <string>Email</string>
     </property>
+    <addaction name="actionExportEmail"/>
    </widget>
    <addaction name="menuVertSys"/>
    <addaction name="menuEscalador"/>
@@ -162,6 +163,11 @@
    </property>
    <property name="toolTip">
     <string>Gerar relatorio</string>
+   </property>
+  </action>
+  <action name="actionExportEmail">
+   <property name="text">
+    <string>Exportar</string>
    </property>
   </action>
  </widget>

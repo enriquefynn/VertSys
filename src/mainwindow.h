@@ -33,6 +33,7 @@ private slots:
     void on_actionImport_triggered();
 
     void on_actionMake_Report_triggered();
+    void on_actionExportEmail_triggered();
 
 public slots:
     void insertClimber(Climber *&climber);
@@ -51,6 +52,7 @@ signals:
     void updateClimberInfo();
     void updateClimberInfo(Climber *&climber);
     void restart();
+    void exportEmails();
 
 private:
     Ui::MainWindow *ui;

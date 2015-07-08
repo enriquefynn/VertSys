@@ -22,6 +22,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(this, SIGNAL(updateClimberInfo()),
         ui->tabWidget, SLOT(updateClimberInfo()), Qt::UniqueConnection);        
+
+    connect(this, SIGNAL(exportEmails()),
+        ui->tabWidget, SLOT(exportClimbersEmails()), Qt::UniqueConnection);
 }
 
 MainWindow::~MainWindow()
@@ -172,4 +175,9 @@ void MainWindow::on_actionMake_Report_triggered()
 {
     report = new ReportWindow(this);
     report->show();
+}
+
+void MainWindow::on_actionExportEmail_triggered()
+{
+    emit exportEmails();
 }
