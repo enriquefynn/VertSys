@@ -35,6 +35,7 @@ public slots:
     void toggleActivity();
     void updateClimberInfo();
     void setPayment(QDate date, double value);
+    void exportClimbersEmails();
 
 private:
     void setupTabs();
