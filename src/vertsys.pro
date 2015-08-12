@@ -23,7 +23,11 @@ SOURCES += main.cpp \
     climbermodel.cpp \
     paymentmodel.cpp \
     paymentwindow.cpp \
-    payment.cpp
+    payment.cpp \
+    edituser.cpp \
+    reportwindow.cpp \
+    datesortfilterproxymodel.cpp \
+    dateformatdelegate.cpp
 
 HEADERS  += mainwindow.h \
     registeruser.h \
@@ -36,13 +40,17 @@ HEADERS  += mainwindow.h \
     paymentmodel.h \
     paymentwindow.h \
     payment.h \
-    vertsys.h
-
-TRANSLATIONS += vertSys_pt.ts
+    vertsys.h \
+    edituser.h \
+    reportwindow.h \
+    datesortfilterproxymodel.h \
+    dateformatdelegate.h
 
 FORMS    += mainwindow.ui \
     registeruser.ui \
-    payment.ui
+    payment.ui \
+    edituser.ui \
+    report.ui
 
 RESOURCES += \
     icons.qrc\

@@ -8,9 +8,10 @@
 #include <QFileDialog>
 
 #include "registeruser.h"
-//#include "model.h"
+#include "edituser.h"
 #include "climber.h"
 #include "paymentwindow.h"
+#include "reportwindow.h"
 #include "ui_mainwindow.h"
 
 namespace Ui {
@@ -31,25 +32,34 @@ private slots:
     void on_actionExport_triggered();
     void on_actionImport_triggered();
 
+    void on_actionMake_Report_triggered();
+    void on_actionExportEmail_triggered();
+
 public slots:
     void insertClimber(Climber *&climber);
+    void editClimber(int row, Climber *&climber);
     void rowSelected(QModelIndex x, QModelIndex y);
     void recvClimberInfo(Climber *&climber);
     void updateActivateOption(int idx);
+    void displayClimberInfo(int, Climber*);
 
 signals:
     void updateFilter(QString str);
     void insertClimberInDB(Climber *&climber);
+    void editClimberInDB(int row, Climber *&climber);
     void removeClimber();
     void toggleActivity();
     void updateClimberInfo();
     void updateClimberInfo(Climber *&climber);
     void restart();
+    void exportEmails();
 
 private:
     Ui::MainWindow *ui;
     RegisterUser *ru;
+    EditUser *eu;
     PaymentWindow *payment;
+    ReportWindow *report;
 
 public:
     explicit MainWindow(QWidget *parent = 0);

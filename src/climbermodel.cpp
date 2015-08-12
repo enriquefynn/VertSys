@@ -2,6 +2,7 @@
 #include <QtDebug>
 #include <QSqlRecord>
 #include <QTimer>
+
 #include "climbermodel.h"
 
 ClimberModel::ClimberModel(QObject *parent) :
@@ -57,6 +58,20 @@ bool ClimberModel::removeClimber(int row)
     bool ret = removeRows(row, 1);
     submitAll();
     return ret;
+}
+
+//FIXME: Update modified fields only
+void ClimberModel::editClimber(int row, Climber *&c)
+{
+    setData(index(row, VertSys::name), c->getName(),Qt::EditRole);
+    setData(index(row, VertSys::phone), c->getPhone(),Qt::EditRole);
+    setData(index(row, VertSys::address), c->getAddress(),Qt::EditRole);
+    setData(index(row, VertSys::email), c->getEmail(),Qt::EditRole);
+    setData(index(row, VertSys::expirationDate), c->getExpirationDate(),Qt::EditRole);
+    setData(index(row, VertSys::startDate), c->getStartDate(),Qt::EditRole);
+    setData(index(row, VertSys::status), c->getStatus(),Qt::EditRole);
+    setData(index(row, VertSys::observations), c->getObservations(),Qt::EditRole);
+    submitAll();
 }
 
 void ClimberModel::toggleActivity(int row)

@@ -52,7 +52,7 @@
      <x>0</x>
      <y>0</y>
      <width>549</width>
-     <height>22</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuVertSys">
@@ -79,6 +79,7 @@
     <property name="title">
      <string>Email</string>
     </property>
+    <addaction name="actionExportEmail"/>
    </widget>
    <addaction name="menuVertSys"/>
    <addaction name="menuEscalador"/>
@@ -100,6 +101,7 @@
    <addaction name="actionNew_Climber"/>
    <addaction name="actionRemove_Climber"/>
    <addaction name="actionPay_Climber"/>
+   <addaction name="actionMake_Report"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionNew_Climber">
@@ -150,6 +152,23 @@
   <action name="actionImport">
    <property name="text">
     <string>Import...</string>
+   </property>
+  </action>
+  <action name="actionMake_Report">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/general/icons/report.png</normaloff>:/general/icons/report.png</iconset>
+   </property>
+   <property name="text">
+    <string>Gerar Relatorio</string>
+   </property>
+   <property name="toolTip">
+    <string>Gerar relatorio</string>
+   </property>
+  </action>
+  <action name="actionExportEmail">
+   <property name="text">
+    <string>Exportar</string>
    </property>
   </action>
  </widget>

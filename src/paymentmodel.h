@@ -1,10 +1,10 @@
 #pragma once
 
-#include <QSqlTableModel>
+#include <QSqlRelationalTableModel>
 #include <QDate>
 #include "payment.h"
 
-class PaymentModel : public QSqlTableModel
+class PaymentModel : public QSqlRelationalTableModel
 {
 public:
     PaymentModel(QObject *parent);

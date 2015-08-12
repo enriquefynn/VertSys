@@ -4,5 +4,6 @@
         <file>icons/New-climber.png</file>
         <file>icons/Rem-climber.png</file>
         <file>icons/paying.png</file>
+        <file>icons/report.png</file>
     </qresource>
 </RCC>

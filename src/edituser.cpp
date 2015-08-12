@@ -1,38 +1,56 @@
-#include "registeruser.h"
-#include "ui_registeruser.h"
+#include "edituser.h"
+#include "ui_edituser.h"
 #include "mainwindow.h"
 
-RegisterUser::RegisterUser(QWidget *parent) :
+
+// FIXME: Don't repeat yourself
+// Reuse registeruser.ui and handle signals of creation and editing climbers
+EditUser::EditUser(int row, Climber*& climber, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::RegisterUser)
+    ui(new Ui::EditUser)
 {
     ui->setupUi(this);
-    ui->dateEdit->setDate(QDate::currentDate());
-    ui->dateEdit_Start->setDate(QDate::currentDate());
 
     phoneValidator = new PhoneValidator();
     emailValidator = new EmailValidator();
 
+    rowEdited = row;
+
     ui->lineEdit_Phone->setValidator(phoneValidator);
     ui->lineEdit_Email->setValidator(emailValidator);
 
-    connect(this, SIGNAL(insertClimber(Climber*&)),
-            static_cast<QMainWindow*>(parent), SLOT(insertClimber(Climber*&)), Qt::UniqueConnection);
+    ui->lineEdit_Name->setText(climber->getName());
+    ui->lineEdit_Phone->setText(climber->getPhone());
+    ui->lineEdit_Addr->setText(climber->getAddress());
+    ui->lineEdit_Email->setText(climber->getEmail());
+    ui->observationsTextEdit->setPlainText(climber->getObservations());
+    ui->dateEdit->setDate(climber->getExpirationDate());
+    ui->dateEdit_Start->setDate(climber->getStartDate());
+    QString status = climber->getStatus();
+    if(status == "A")
+        ui->comboBox->setCurrentIndex(0);
+    else
+        ui->comboBox->setCurrentIndex(1);
+
+    connect(this, SIGNAL(editClimber(int, Climber*&)),
+            static_cast<QMainWindow*>(parent), SLOT(editClimber(int, Climber*&)), Qt::UniqueConnection);
 }
 
-RegisterUser::~RegisterUser()
+EditUser::~EditUser()
 {
     delete phoneValidator;
     delete emailValidator;
     delete ui;
 }
 
-void RegisterUser::on_buttonBox_rejected()
+void EditUser::on_buttonBox_rejected()
 {
     delete this;
 }
 
-void RegisterUser::on_buttonBox_accepted()
+//FIXME: Set modified fields only
+//FIXME: Don't repeat yourself
+void EditUser::on_buttonBox_accepted()
 {
     QString name, phone, address, email, status, observations;
     QDate expirationDate, startDate;
@@ -42,7 +60,7 @@ void RegisterUser::on_buttonBox_accepted()
     {
         QMessageBox msgBox;
         msgBox.setIcon(QMessageBox::Critical);
-        msgBox.setText(tr("Invalid email!"));
+        msgBox.setText("Email invalido!");
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.setDefaultButton(QMessageBox::Ok);
         msgBox.exec();
@@ -55,7 +73,7 @@ void RegisterUser::on_buttonBox_accepted()
         {
             QMessageBox msgBox;
             msgBox.setIcon(QMessageBox::Critical);
-            msgBox.setText(tr("Invalid phone!"));
+            msgBox.setText("Telefone invalido!");
             msgBox.setStandardButtons(QMessageBox::Ok);
             msgBox.setDefaultButton(QMessageBox::Ok);
             msgBox.exec();
@@ -74,13 +92,8 @@ void RegisterUser::on_buttonBox_accepted()
             else
                 status = "D";
             Climber *c = new Climber(name, phone, address, email, expirationDate, startDate, status, observations);
-            emit insertClimber(c);
+            emit editClimber(rowEdited, c);
             delete this;
         }
     }
-}
-
-void RegisterUser::editaccept()
-{
-    emit editsave();
 }

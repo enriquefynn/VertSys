@@ -12,25 +12,30 @@
 #include "paymentmodel.h"
 #include "climber.h"
 #include "vertsys.h"
+#include "registeruser.h"
 
 class TabWidget : public QTabWidget
 {
     Q_OBJECT
 public:
     explicit TabWidget(QWidget *parent = 0);
-    
+
 signals:
     void updateClimberInfo(Climber *&climber);
     void updateActivateOption(int);
+    void editClimberWindow(int, Climber*);
 
 public slots:
     void updateFilter(QString str);
     void insertClimberInDB(Climber *&climber);
     void removeClimber();
+    void editClimber(const QModelIndex&);
+    void editClimberInDB(int row, Climber *&climber);
     void updateIdx();
     void toggleActivity();
     void updateClimberInfo();
     void setPayment(QDate date, double value);
+    void exportClimbersEmails();
 
 private:
     void setupTabs();

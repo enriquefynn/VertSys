@@ -13,6 +13,12 @@ TabWidget::TabWidget(QWidget *parent) :
     connect(this, SIGNAL(updateClimberInfo(Climber*&)),
             static_cast<QMainWindow*>(parent->parent()), SLOT(recvClimberInfo(Climber*&)), Qt::UniqueConnection);
 
+    connect(currentWidget(),SIGNAL(doubleClicked(const QModelIndex&)),
+            this, SLOT(editClimber(const QModelIndex&)), Qt::UniqueConnection);
+
+    connect(this, SIGNAL(editClimberWindow(int, Climber*)),
+            static_cast<QMainWindow*>(parent->parent()), SLOT(displayClimberInfo(int, Climber*)), Qt::UniqueConnection);
+
     connect(this, SIGNAL(updateActivateOption(int)),
             static_cast<QMainWindow*>(parent->parent()), SLOT(updateActivateOption(int)), Qt::UniqueConnection);
 }
@@ -54,7 +60,9 @@ void TabWidget::setupTabs()
         tableView->setModel(proxyModel);
         tableView->setSortingEnabled(true);
         tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
-        //tableView->horizontalHeader()->setStretchLastSection(true);
+        tableView->horizontalHeader()->setStretchLastSection(true);
+        tableView->setAlternatingRowColors(true);
+        tableView->setSortingEnabled(true);
         tableView->verticalHeader()->hide();
         tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tableView->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -84,8 +92,11 @@ void TabWidget::updateFilter(QString str)
 void TabWidget::insertClimberInDB(Climber *&climber)
 {
     qDebug() << "INSERTED: " << climber->getName();
-    climberModel->insertClimber(climber);
-    updateIdx();
+    bool ret = climberModel->insertClimber(climber);
+    if(ret)
+        updateIdx();
+    else
+        qDebug() << climberModel->lastError().text();
 }
 
 void TabWidget::removeClimber()
@@ -94,12 +105,30 @@ void TabWidget::removeClimber()
     climberModel->removeClimber(row);
 }
 
+void TabWidget::editClimber(const QModelIndex& index)
+{
+    Q_UNUSED(index);
+
+    int row = selectedRow();
+    emit editClimberWindow(row, climberModel->getClimber(row));
+}
+
+void TabWidget::editClimberInDB(int row, Climber *&climber)
+{
+    qDebug() << "EDITED: " << climber->getName() << " " << row;
+    climberModel->editClimber(row, climber);
+}
+
 //FIXME: Not really working
 void TabWidget::updateIdx()
 {
     QTableView *temp = static_cast<QTableView*>(currentWidget());
     emit updateActivateOption(currentIndex());
     temp->setCurrentIndex(QModelIndex());
+
+    // Connect each tab with editClimber
+    connect(currentWidget(),SIGNAL(doubleClicked(const QModelIndex&)),
+            this, SLOT(editClimber(const QModelIndex&)), Qt::UniqueConnection);
 }
 
 void TabWidget::toggleActivity()
@@ -117,7 +146,7 @@ int TabWidget::selectedRow()
     QModelIndex idx;
     int row;
     foreach (idx, indexes)
-        row = proxy->mapToSource(idx).row();
+        row = proxyTextModel->mapToSource(proxy->mapToSource(idx)).row();
     return row;
 }
 

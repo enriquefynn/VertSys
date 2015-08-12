@@ -11,6 +11,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this, SIGNAL(insertClimberInDB(Climber *&)),
         ui->tabWidget, SLOT(insertClimberInDB(Climber *&)), Qt::UniqueConnection);
 
+    connect(this, SIGNAL(editClimberInDB(int, Climber *&)),
+        ui->tabWidget, SLOT(editClimberInDB(int, Climber *&)), Qt::UniqueConnection);
+
     connect(this, SIGNAL(removeClimber()),
         ui->tabWidget, SLOT(removeClimber()), Qt::UniqueConnection);
 
@@ -18,7 +21,10 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->tabWidget, SLOT(toggleActivity()), Qt::UniqueConnection);
 
     connect(this, SIGNAL(updateClimberInfo()),
-        ui->tabWidget, SLOT(updateClimberInfo()), Qt::UniqueConnection);
+        ui->tabWidget, SLOT(updateClimberInfo()), Qt::UniqueConnection);        
+
+    connect(this, SIGNAL(exportEmails()),
+        ui->tabWidget, SLOT(exportClimbersEmails()), Qt::UniqueConnection);
 }
 
 MainWindow::~MainWindow()
@@ -40,6 +46,17 @@ void MainWindow::on_lineEdit_search_textChanged(const QString &str)
 void MainWindow::insertClimber(Climber *&climber)
 {
     emit insertClimberInDB(climber);
+}
+
+void MainWindow::editClimber(int row, Climber *&climber)
+{
+    emit editClimberInDB(row, climber);
+}
+
+void MainWindow::displayClimberInfo(int row, Climber* climber)
+{
+    eu = new EditUser(row, climber, this);
+    eu->show();
 }
 
 void MainWindow::on_actionRemove_Climber_triggered()
@@ -79,7 +96,6 @@ void MainWindow::on_actionPay_Climber_triggered()
 
     emit updateClimberInfo();
     payment->show();
-
 }
 
 void MainWindow::recvClimberInfo(Climber *&climber)
@@ -153,4 +169,15 @@ void MainWindow::on_actionImport_triggered()
         msgBox.setDefaultButton(QMessageBox::Ok);
     }
     msgBox.exec();
+}
+
+void MainWindow::on_actionMake_Report_triggered()
+{
+    report = new ReportWindow(this);
+    report->show();
+}
+
+void MainWindow::on_actionExportEmail_triggered()
+{
+    emit exportEmails();
 }
