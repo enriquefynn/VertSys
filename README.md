@@ -12,6 +12,7 @@ Current Features:
 * Import/Export database.
 * Edit Climbers.
 * Reports.
+* Export emails
 
 TODO:
 
