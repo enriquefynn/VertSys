@@ -11,13 +11,13 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Pagamento</string>
+   <string>Payment</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>Pagamento</string>
+      <string>Payment</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
@@ -25,14 +25,14 @@
         <item row="0" column="0">
          <widget class="QLabel" name="label">
           <property name="text">
-           <string>Meses:</string>
+           <string>Months:</string>
           </property>
          </widget>
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="label_2">
           <property name="text">
-           <string>Vencimento:</string>
+           <string>Expiration:</string>
           </property>
          </widget>
         </item>
@@ -44,7 +44,7 @@
           <item>
            <widget class="QLabel" name="label_3">
             <property name="text">
-             <string>0</string>
+             <string notr="true">0</string>
             </property>
            </widget>
           </item>
@@ -69,7 +69,7 @@
         <item row="2" column="1">
          <widget class="QDoubleSpinBox" name="valueSpin">
           <property name="prefix">
-           <string>R$ </string>
+           <string>$ </string>
           </property>
           <property name="maximum">
            <double>9999.989999999999782</double>
@@ -79,7 +79,7 @@
         <item row="2" column="0">
          <widget class="QLabel" name="label_4">
           <property name="text">
-           <string>Valor:</string>
+           <string>Amount:</string>
           </property>
          </widget>
         </item>

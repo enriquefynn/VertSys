@@ -1,7 +1,6 @@
 #include "tabwidget.h"
 #include "mainwindow.h"
 #include "payment.h"
-#include "registeruser.h"
 
 TabWidget::TabWidget(QWidget *parent) :
     QTabWidget(parent)
@@ -29,14 +28,14 @@ void TabWidget::setupModel()
     climberModel = new ClimberModel(this);
     climberModel->setTable("climber");
     climberModel->select();
-    climberModel->setHeaderData(VertSys::name, Qt::Horizontal, QObject::tr("Nome"));
-    climberModel->setHeaderData(VertSys::phone, Qt::Horizontal, QObject::tr("Telefone"));
+    climberModel->setHeaderData(VertSys::name, Qt::Horizontal, QObject::tr("Name"));
+    climberModel->setHeaderData(VertSys::phone, Qt::Horizontal, QObject::tr("Phone"));
     climberModel->setHeaderData(VertSys::email, Qt::Horizontal, QObject::tr("Email"));
-    climberModel->setHeaderData(VertSys::expirationDate, Qt::Horizontal, QObject::tr("Vencimento"));
-
+    climberModel->setHeaderData(VertSys::expirationDate, Qt::Horizontal, QObject::tr("Expiration"));
     proxyTextModel = new QSortFilterProxyModel(this);
     proxyTextModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     proxyTextModel->setSourceModel(climberModel);
+
 
     paymentModel = new PaymentModel(this);
     paymentModel->setTable("payment");
@@ -46,7 +45,7 @@ void TabWidget::setupTabs()
 {
     QStringList groups;
     QList<QString> charNames;
-    groups << tr("Mensalistas") << tr("Todos") << tr("Diarios");
+    groups << tr("Mensalists") << tr("All") << tr("Daily");
     charNames << "A" << "" << "D";
 
     for (int i = 0; i < groups.size(); ++i) {
@@ -166,8 +165,8 @@ void TabWidget::setPayment(QDate expirationDate, double value)
     {
         QMessageBox msgBox;
         msgBox.setIcon(QMessageBox::Information);
-        msgBox.setText("Pagamento do escalador " + c->getName() + " efetuado com sucesso!\nVencimento \
-na data: " + expirationDate.toString("dd/MM/yyyy") + "\nValor: R$ " + QString::number(value));
+        msgBox.setText(tr("Payment for climber ") + c->getName() + tr(" successful!") + "\n" +
+        tr("Expiration in: ") + expirationDate.toString(tr("MM/dd/yyyy")) + tr("\nAmount: $") + QString::number(value));
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.setDefaultButton(QMessageBox::Ok);
         msgBox.exec();
@@ -176,7 +175,7 @@ na data: " + expirationDate.toString("dd/MM/yyyy") + "\nValor: R$ " + QString::n
     {
         QMessageBox msgBox;
         msgBox.setIcon(QMessageBox::Critical);
-        msgBox.setText("Não foi possível efetuar o pagamento!");
+        msgBox.setText(tr("Error while processing payment!"));
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.setDefaultButton(QMessageBox::Ok);
         msgBox.exec();

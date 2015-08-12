@@ -1,6 +1,7 @@
 #include <QApplication>
 #include <QTableView>
 #include <QMessageBox>
+#include <QTranslator>
 
 #include "mainwindow.h"
 #include "dbmanager.h"
@@ -11,11 +12,21 @@ int main(int argc, char *argv[])
     do
     {
         QApplication a(argc, argv);
+
+        QTranslator qtTranslator;
+        qtTranslator.load("qt_" + QLocale::system().name(),
+        QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+        a.installTranslator(&qtTranslator);
+
+        QTranslator vertSysTranslator;
+        vertSysTranslator.load("vertSys_" + QLocale::system().name());
+        a.installTranslator(&vertSysTranslator);
+
         a.setWindowIcon(QIcon(":/general/icons/New-climber.png"));
         DBManager db;
         if (!db.openDB())
-            QMessageBox::critical(0, "Base de dados", "Não foi possível conectar ao banco de dados\n"
-                                  "Entre em contato com o desenvolvedor", QMessageBox::Cancel);
+            QMessageBox::critical(0, "Database", "It wasn't possible to connect to database\n\
+Contact the developer!", QMessageBox::Cancel);
         MainWindow w;
         w.show();
         currentExitCode = a.exec();

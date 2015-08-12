@@ -6,18 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>394</width>
-    <height>378</height>
+    <width>400</width>
+    <height>380</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Cadastro</string>
+   <string>Registration</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QGroupBox" name="groupBox_register">
      <property name="title">
-      <string>Cadastro</string>
+      <string>Registration</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
@@ -25,28 +25,28 @@
         <item row="6" column="0">
          <widget class="QLabel" name="label_5">
           <property name="text">
-           <string>Vencimento:</string>
+           <string>Expiration:</string>
           </property>
          </widget>
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="label_3">
           <property name="text">
-           <string>Telefone:</string>
+           <string>Phone:</string>
           </property>
          </widget>
         </item>
         <item row="0" column="0">
          <widget class="QLabel" name="label">
           <property name="text">
-           <string>Nome: </string>
+           <string>Name:</string>
           </property>
          </widget>
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="label_2">
           <property name="text">
-           <string>Endereço: </string>
+           <string>Address:</string>
           </property>
          </widget>
         </item>
@@ -75,6 +75,9 @@
         </item>
         <item row="6" column="1">
          <widget class="QDateEdit" name="dateEdit">
+          <property name="displayFormat">
+           <string>MM/dd/yyyy</string>
+          </property>
           <property name="calendarPopup">
            <bool>true</bool>
           </property>
@@ -83,12 +86,15 @@
         <item row="5" column="0">
          <widget class="QLabel" name="label_6">
           <property name="text">
-           <string>Início:</string>
+           <string>Beginning:</string>
           </property>
          </widget>
         </item>
         <item row="5" column="1">
          <widget class="QDateEdit" name="dateEdit_Start">
+          <property name="displayFormat">
+           <string>MM/dd/yyyy</string>
+          </property>
           <property name="calendarPopup">
            <bool>true</bool>
           </property>
@@ -98,12 +104,12 @@
          <widget class="QComboBox" name="comboBox">
           <item>
            <property name="text">
-            <string>Mensalista</string>
+            <string>Mensalist</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>Diario</string>
+            <string>Daily</string>
            </property>
           </item>
          </widget>
@@ -111,14 +117,14 @@
         <item row="8" column="0">
          <widget class="QLabel" name="label_7">
           <property name="text">
-           <string>Atividade:</string>
+           <string>Activity:</string>
           </property>
          </widget>
         </item>
         <item row="4" column="0">
          <widget class="QLabel" name="label_8">
           <property name="text">
-           <string>Observações:</string>
+           <string>Observations:</string>
           </property>
          </widget>
         </item>
@@ -132,9 +138,6 @@
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
@@ -150,6 +153,7 @@
   <tabstop>lineEdit_Addr</tabstop>
   <tabstop>lineEdit_Phone</tabstop>
   <tabstop>lineEdit_Email</tabstop>
+  <tabstop>observationsTextEdit</tabstop>
   <tabstop>dateEdit_Start</tabstop>
   <tabstop>dateEdit</tabstop>
   <tabstop>comboBox</tabstop>

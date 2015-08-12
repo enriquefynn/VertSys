@@ -53,6 +53,10 @@ FORMS    += mainwindow.ui \
     report.ui
 
 RESOURCES += \
-    icons.qrc
+    icons.qrc\
 
-OTHER_FILES +=
+QMAKE_EXTRA_COMPILERS += lrelease-qt4
+lrelease-qt4.input         = TRANSLATIONS
+lrelease-qt4.output        = ${QMAKE_FILE_BASE}.qm
+lrelease-qt4.commands      = $$[QT_INSTALL_BINS]/lrelease-qt4 ${QMAKE_FILE_IN} -qm ${QMAKE_FILE_BASE}.qm
+lrelease-qt4.CONFIG       += no_link target_predeps
