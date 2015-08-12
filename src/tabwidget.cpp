@@ -182,3 +182,20 @@ void TabWidget::setPayment(QDate expirationDate, double value)
     }
     delete c;
 }
+
+void TabWidget::exportClimbersEmails()
+{
+    QString defaultFileName = QString("Emails_cadastrados_ate-%1.csv").arg(QDate::currentDate().toString("dd.MM.yyyy"));
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"), defaultFileName, tr("Text CSV (*.csv)"));
+
+    QFile file(fileName);
+    if (file.open(QFile::WriteOnly | QFile::Truncate))
+    {
+        QTextStream data(&file);
+        QStringList strList;
+        for( int r = 0; r < climberModel->rowCount(); ++r )
+            strList << climberModel->index(r, VertSys::email).data().toString();
+        data << strList.join("\n");
+        file.close();
+    }
+}
